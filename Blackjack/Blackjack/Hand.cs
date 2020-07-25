@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using BlackjackGame;
+﻿using BlackjackGame;
+using System.Collections.Generic;
 
 namespace Blackjack
 {
@@ -13,9 +13,9 @@ namespace Blackjack
             _currentHand = new List<Card>();
             _handTotal = 0;
         }
-        
+
         public int GetTotal() => _handTotal;
-        
+
         public int GetNumberOfCards() => _currentHand.Count;
 
         public List<Card> SeeCards() => _currentHand;

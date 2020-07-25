@@ -29,7 +29,7 @@ namespace Blackjack.GamePlay
 
         const double DEFAULT_CASH = 500;
 
-        public GameInstance( )
+        public GameInstance()
         {
             _deck = new Deck();
             _dealerHand = new Hand();
@@ -53,7 +53,7 @@ namespace Blackjack.GamePlay
             AddPlayer();
         }
 
-        public GameInstance( int playerCount )
+        public GameInstance(int playerCount)
         {
             _deck = new Deck();
             _dealerHand = new Hand();
@@ -66,85 +66,85 @@ namespace Blackjack.GamePlay
             }
         }
 
-        public void AddPlayer( )
+        public void AddPlayer()
         {
-            _playerBets.Add( 0 );
-            _hasSplit.Add( false );
-            _splitResults.Add( 0 );
-            _insuranceBets.Add( 0 );
-            _playerResults.Add( 0 );
-            _insuranceWin.Add( false );
-            _players.Add( new Hand() );
-            _splitHands.Add( new Hand() );
-            _gameData.Add( new GameData() );
-            _playerCash.Add( DEFAULT_CASH );
+            _playerBets.Add(0);
+            _hasSplit.Add(false);
+            _splitResults.Add(0);
+            _insuranceBets.Add(0);
+            _playerResults.Add(0);
+            _insuranceWin.Add(false);
+            _players.Add(new Hand());
+            _splitHands.Add(new Hand());
+            _gameData.Add(new GameData());
+            _playerCash.Add(DEFAULT_CASH);
         }
 
         /// <summary>
         /// By Default this creates single player game
         /// </summary>
-        public void Start( )
+        public void Start()
         {
             AddPlayer();
         }
 
-        public Hand GetPlayerHand( int playerNumber )
+        public Hand GetPlayerHand(int playerNumber)
         {
             //indexing starts at 0 normally but "player 1" is more intuitive so I mean....
-            _gameData[playerNumber - 1].SetMoneyLeftOver( _players[playerNumber - 1].GetTotal() );
+            _gameData[playerNumber - 1].SetMoneyLeftOver(_players[playerNumber - 1].GetTotal());
             return _players[playerNumber - 1];
         }
 
-        public Hand GetSplitHand( int playerNumber )
+        public Hand GetSplitHand(int playerNumber)
             => _splitHands[playerNumber - 1]; //indexing starts at 0 normally but "player 1" is more intuitive so I mean....
 
-        public void SetPlayerSplit( int playerNumber ) => _hasSplit[playerNumber - 1] = true;
+        public void SetPlayerSplit(int playerNumber) => _hasSplit[playerNumber - 1] = true;
 
-        public bool HasSplit( int playerNumber ) => _hasSplit[playerNumber - 1];
+        public bool HasSplit(int playerNumber) => _hasSplit[playerNumber - 1];
 
-        public Hand GetDealerHand( ) => _dealerHand;
+        public Hand GetDealerHand() => _dealerHand;
 
-        public Deck GetDeck( ) => _deck;
+        public Deck GetDeck() => _deck;
 
-        public double GetCash( int playerNumber ) => _playerCash[playerNumber - 1];
+        public double GetCash(int playerNumber) => _playerCash[playerNumber - 1];
 
         /// <summary>
         /// Gets Player 0 Cash 
         /// </summary>
         /// <returns> returns double </returns>
-        public double GetCash( ) => _playerCash[0];
+        public double GetCash() => _playerCash[0];
 
-        public void SetCash( int playerNumber, double cash ) => _playerCash[playerNumber - 1] = cash;
+        public void SetCash(int playerNumber, double cash) => _playerCash[playerNumber - 1] = cash;
 
-        public bool HasBusted( int playerNumber ) => (_players[playerNumber - 1].GetTotal() < 22) ? false : true;
+        public bool HasBusted(int playerNumber) => (_players[playerNumber - 1].GetTotal() < 22) ? false : true;
 
-        public void SetInsuranceAvailaible( bool insurance ) => _insuranceAvailiable = insurance;
+        public void SetInsuranceAvailaible(bool insurance) => _insuranceAvailiable = insurance;
 
-        public bool GetInsuranceAvailaible( ) => _insuranceAvailiable;
+        public bool GetInsuranceAvailaible() => _insuranceAvailiable;
 
-        public void SetInsuranceWin( int playerNumber, bool insurance ) => _insuranceWin[playerNumber - 1] = insurance;
+        public void SetInsuranceWin(int playerNumber, bool insurance) => _insuranceWin[playerNumber - 1] = insurance;
 
-        public bool GetInsuranceWin( int playerNumber ) => _insuranceWin[playerNumber - 1];
+        public bool GetInsuranceWin(int playerNumber) => _insuranceWin[playerNumber - 1];
 
-        public void SetInsuranceBet( int playerNumber, double money ) => _insuranceBets[playerNumber - 1] = money;
+        public void SetInsuranceBet(int playerNumber, double money) => _insuranceBets[playerNumber - 1] = money;
 
-        public void SetPlayerResult( int playerNumber, GameResult result ) => _playerResults[playerNumber - 1] = result;
+        public void SetPlayerResult(int playerNumber, GameResult result) => _playerResults[playerNumber - 1] = result;
 
-        public void SetSplitResult( int playerNumber, GameResult result ) => _splitResults[playerNumber - 1] = result;
+        public void SetSplitResult(int playerNumber, GameResult result) => _splitResults[playerNumber - 1] = result;
 
-        public double GetBet( int playerNumber ) => _playerBets[playerNumber - 1];
+        public double GetBet(int playerNumber) => _playerBets[playerNumber - 1];
 
-        public double GetInsuranceBet( int playerNumber ) => _insuranceBets[playerNumber - 1];
+        public double GetInsuranceBet(int playerNumber) => _insuranceBets[playerNumber - 1];
 
-        public GameData GetGameData( int playerNumber ) => _gameData[playerNumber - 1];
+        public GameData GetGameData(int playerNumber) => _gameData[playerNumber - 1];
 
-        public void SetBet( int playerNumber, double money )
+        public void SetBet(int playerNumber, double money)
         {
             _playerBets[playerNumber - 1] = money;
-            _gameData[playerNumber - 1].MoneyBet = Convert.ToInt32( money );
+            _gameData[playerNumber - 1].MoneyBet = Convert.ToInt32(money);
         }
 
-        public double GetPayout( int playerNumber )
+        public double GetPayout(int playerNumber)
         {
             double result = 0;
             const int LOSS_AMT = 0;
@@ -160,7 +160,7 @@ namespace Blackjack.GamePlay
             }
 
             //split
-            if (HasSplit( playerNumber ))
+            if (HasSplit(playerNumber))
             {
                 if (_splitResults[playerNumber - 1] == GameResult.Loss)
                 {
@@ -179,13 +179,13 @@ namespace Blackjack.GamePlay
             if (_playerResults[playerNumber - 1] == GameResult.Loss)
             {
                 result += LOSS_AMT;
-                _gameData[playerNumber - 1].SetMoneyLost( _gameData[playerNumber - 1].MoneyBet * -1 );
+                _gameData[playerNumber - 1].SetMoneyLost(_gameData[playerNumber - 1].MoneyBet * -1);
             }
 
             else if (_playerResults[playerNumber - 1] == GameResult.Win)
             {
                 result += (_playerBets[playerNumber - 1] * WIN_RATIO);
-                _gameData[playerNumber - 1].SetMoneyWon( _gameData[playerNumber - 1].MoneyBet );
+                _gameData[playerNumber - 1].SetMoneyWon(_gameData[playerNumber - 1].MoneyBet);
             }
 
             else if (_playerResults[playerNumber - 1] == GameResult.Standoff)
@@ -198,13 +198,13 @@ namespace Blackjack.GamePlay
                 _gameData[playerNumber - 1].SetMoneyLost(
                     Convert.ToInt32(
                         (_gameData[playerNumber - 1].MoneyBet * BLACKJACK_RATIO) - _gameData[playerNumber - 1].MoneyBet
-                    ) );
+                    ));
             }
 
             return result;
         }
 
-        public void ResetGame( )
+        public void ResetGame()
         {
             _insuranceAvailiable = false;
 

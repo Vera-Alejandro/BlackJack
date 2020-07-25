@@ -1,13 +1,13 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Blackjack;
 using BlackjackGame;
-using Blackjack;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SQLite;
-using System.IO;
+using SQLite.Storage;
+using System;
 using System.Diagnostics;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using SQLite.Storage;
 
 namespace Unit_Testing
 {
@@ -80,7 +80,7 @@ namespace Unit_Testing
                         total += rValue;
                     }
 
-                    switch(rValue)
+                    switch (rValue)
                     {
                         case 2:
                             testHand.AddCard(secondCard);
@@ -163,7 +163,7 @@ namespace Unit_Testing
             Assert.AreEqual(CORRECT_TIE, p3MoneyDiff);
             Assert.AreEqual(CORRECT_BLACKJACK, p4MoneyDiff);
         }
-        
+
         [TestMethod]
         public void TestEncryption()
         {
@@ -283,7 +283,7 @@ namespace Unit_Testing
             profile1.SetPassword("Ass'n'Titties");
             profile1.SetPhone("8472525700");
             profile1.SetUser("MoBama");
-            
+
             profile2.SetAddress("somewhere in sweden.");
             profile2.SetCardNumber("69694206969");
             profile2.SetName("Pewdiepie");

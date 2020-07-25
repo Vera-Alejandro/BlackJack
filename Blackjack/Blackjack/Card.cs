@@ -15,7 +15,7 @@ namespace BlackjackGame
 
 
         private CardValue _value { get; set; }
-        private SuiteType _suit {get; set;}
+        private SuiteType _suit { get; set; }
         private Image _cardImg { get; set; }
 
         private Image _cardBack { get; set; }
@@ -311,20 +311,20 @@ namespace BlackjackGame
         }
 
         public enum CardValue
-        { 
+        {
             Ace,
             Two,
             Three,
-            Four, 
-            Five, 
+            Four,
+            Five,
             Six,
             Seven,
             Eight,
-            Nine, 
-            Ten, 
-            Jack, 
+            Nine,
+            Ten,
+            Jack,
             Queen,
-            King        
+            King
         }
 
     }

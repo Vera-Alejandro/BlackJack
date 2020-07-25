@@ -14,9 +14,9 @@
         private string _address { get; set; }
         private string _cardNumber { get; set; }
 
-        public ProfileInfo( ) { }
+        public ProfileInfo() { }
 
-        public ProfileInfo( string Username, string Name, string PhoneNumber, string Address, string CardNumber )
+        public ProfileInfo(string Username, string Name, string PhoneNumber, string Address, string CardNumber)
         {
             _user = Username;
             _name = Name;
@@ -25,7 +25,7 @@
             _cardNumber = CardNumber;
         }
 
-        public ProfileInfo( string Username, string password, string Name, string PhoneNumber, string Address, string CardNumber )
+        public ProfileInfo(string Username, string password, string Name, string PhoneNumber, string Address, string CardNumber)
         {
             _user = Username;
             _name = Name;
@@ -34,15 +34,15 @@
             _cardNumber = CardNumber;
         }
 
-        public void SetUser( string User ) { _user = User; }
+        public void SetUser(string User) { _user = User; }
 
-        public void SetName( string Name ) { _name = Name; }
+        public void SetName(string Name) { _name = Name; }
 
-        public void SetPhone( string Phone ) { _phone = Phone; }
+        public void SetPhone(string Phone) { _phone = Phone; }
 
-        public void SetAddress( string Address ) { _address = Address; }
+        public void SetAddress(string Address) { _address = Address; }
 
-        public void SetCardNumber( string CardNumber ) { _cardNumber = CardNumber; }
+        public void SetCardNumber(string CardNumber) { _cardNumber = CardNumber; }
 
         public string User => _user;
 
@@ -51,8 +51,8 @@
         public string Name => _name;
         public string PhoneNumber => _phone;
         public string Address => _address;
-        public string GetCardNumber( ) => _cardNumber;
+        public string GetCardNumber() => _cardNumber;
 
-        public void ServerSetPassword( byte[] flow ) { _password = flow; }
+        public void ServerSetPassword(byte[] flow) { _password = flow; }
     }
 }

@@ -41,15 +41,15 @@
         public void SetMoneyLost(int CashLost)
         {
             _moneyLost = CashLost;
-            MostMoneyLost = (_moneyLost < MostMoneyLost) ? _moneyLost : MostMoneyLost; 
+            MostMoneyLost = (_moneyLost < MostMoneyLost) ? _moneyLost : MostMoneyLost;
         }
 
         public int SetMoneyLeftOver(int LeftOver) => _moneyLeftOver = LeftOver;
-        
-        public int GetMoneyLeftOver() => _moneyLeftOver; 
 
-        public int GetMoneyWon() => _moneyWon; 
+        public int GetMoneyLeftOver() => _moneyLeftOver;
 
-        public int GetMoneyLost() => _moneyLost; 
+        public int GetMoneyWon() => _moneyWon;
+
+        public int GetMoneyLost() => _moneyLost;
     }
 }

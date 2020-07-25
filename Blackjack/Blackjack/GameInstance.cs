@@ -1,8 +1,8 @@
 ﻿using BlackjackGame;
+using SQLite.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SQLite.Storage;
 
 namespace Blackjack
 {
@@ -171,7 +171,7 @@ namespace Blackjack
                 result += (_playerBets[playerNumber - 1] * BLACKJACK_RATIO);
                 _gameData[playerNumber - 1].SetMoneyLost(
                     Convert.ToInt32(
-                        (_gameData[playerNumber - 1].MoneyBet * BLACKJACK_RATIO) - _gameData[playerNumber -1].MoneyBet
+                        (_gameData[playerNumber - 1].MoneyBet * BLACKJACK_RATIO) - _gameData[playerNumber - 1].MoneyBet
                     ));
             }
 

@@ -8,27 +8,27 @@ namespace Blackjack.Data
         private int _handTotal { get; set; }
         private List<Card> _currentHand { get; set; }
 
-        public Hand( )
+        public Hand()
         {
             _currentHand = new List<Card>();
             _handTotal = 0;
         }
 
-        public int GetTotal( ) => _handTotal;
+        public int GetTotal() => _handTotal;
 
-        public int GetNumberOfCards( ) => _currentHand.Count;
+        public int GetNumberOfCards() => _currentHand.Count;
 
-        public List<Card> SeeCards( ) => _currentHand;
+        public List<Card> SeeCards() => _currentHand;
 
-        public bool HasBusted( ) => (_handTotal > 21) ? true : false;
+        public bool HasBusted() => (_handTotal > 21) ? true : false;
 
-        public void ClearHand( )
+        public void ClearHand()
         {
             _handTotal = 0;
             _currentHand.Clear();
         }
 
-        private void AddCardValues( )
+        private void AddCardValues()
         {
             _handTotal = 0;
             int aceCount = 0;
@@ -87,24 +87,24 @@ namespace Blackjack.Data
             }
         }
 
-        public void AddCard( Card NewCard )
+        public void AddCard(Card NewCard)
         {
-            _currentHand.Add( NewCard );
+            _currentHand.Add(NewCard);
             AddCardValues();
         }
 
-        public Card GetCard( )
+        public Card GetCard()
         {
             foreach (Card card in _currentHand)
             {
                 if (!card.UsedValue)
                 {
-                    card.SetUsedValue( true );
+                    card.SetUsedValue(true);
                     return card;
                 }
             }
 
-            _currentHand[0].SetUsedValue( true );
+            _currentHand[0].SetUsedValue(true);
             return _currentHand[0];
         }
     }

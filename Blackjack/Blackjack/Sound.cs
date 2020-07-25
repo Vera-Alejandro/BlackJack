@@ -26,11 +26,11 @@ namespace Blackjack
             string callString = "open ";
             string callType;
             string fileType = _fileName.Substring((_fileName.Length - 4), 4);
-            if(fileType.ToLower() == ".mp3")
+            if (fileType.ToLower() == ".mp3")
             {
                 callType = "MPEGVideo";
             }
-            else if(fileType.ToLower() == ".wav")
+            else if (fileType.ToLower() == ".wav")
             {
                 callType = "waveaudio";
             }
@@ -39,7 +39,7 @@ namespace Blackjack
                 Console.WriteLine("File must be .mp3 or .wav");
                 return;
             }
-            
+
 
             callString += string.Format("{0}Resources\\sounds\\", System.IO.Path.GetFullPath(System.IO.Path.Combine(RunningPath, @"..\..\")));
             callString += _fileName;

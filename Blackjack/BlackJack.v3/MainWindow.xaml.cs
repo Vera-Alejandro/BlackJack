@@ -1,7 +1,6 @@
 ﻿using Blackjack.GamePlay;
 using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
 namespace BlackJack.v3
@@ -56,12 +55,13 @@ namespace BlackJack.v3
             bitmap.UriSource = new Uri(@"A:\Temp\Card Back.png");
             bitmap.EndInit();
 
+            CurrentGame
 
             displayImg.BindingGroup = new System.Windows.Data.BindingGroup();
             displayImg.IsEnabled = true;
             displayImg.Margin = new Thickness(0, 90, 160, 0);
             displayImg.Height = 350;
-            displayImg.Width= 240;
+            displayImg.Width = 240;
             displayImg.Source = bitmap;
 
             //PlayerBettingPanel.Children.Add(displayImg);

@@ -55,17 +55,17 @@ namespace BlackjackGame
 
         public Card GetCard()
         {
-           // foreach (Card card in _cards)
+            // foreach (Card card in _cards)
             //{
-             ///   if(!card.GetUsedValue())
-               // {
-                //    card.SetUsedValue(true);
-                 //   return card;
-               // }
-           // }
+            ///   if(!card.GetUsedValue())
+            // {
+            //    card.SetUsedValue(true);
+            //   return card;
+            // }
+            // }
 
-           // Shuffle();
-           for(int i = 0; i < 52; i++)
+            // Shuffle();
+            for (int i = 0; i < 52; i++)
             {
                 if (!_cards[i].GetUsedValue())
                 {

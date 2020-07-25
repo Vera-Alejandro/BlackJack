@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Blackjack;
+using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Runtime.InteropServices;
-using System.Windows.Forms;
-using Blackjack;
 using System.Globalization;
 using System.IO;
-using SQLite;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace BlackjackGame
 {
@@ -40,7 +40,7 @@ namespace BlackjackGame
                     Directory.GetParent(
                         Directory.GetCurrentDirectory()
                     ).FullName
-                ).FullName, 
+                ).FullName,
             "GameData.sqlite3");
 
         private bool gameStarted = false;
@@ -118,7 +118,7 @@ namespace BlackjackGame
                 TitleImage.Location = new Point(12, 12);
             }
         }
-    
+
         #endregion
 
         private void Start_Game(int players)

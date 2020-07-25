@@ -9,7 +9,7 @@
         public int MostMoneyMade { get; internal set; }
         public int MostMoneyLost { get; internal set; }
 
-        public GameData( )
+        public GameData()
         {
             MoneyBet = 0;
             _moneyWon = 0;
@@ -19,7 +19,7 @@
             MostMoneyMade = 0;
         }
 
-        public GameData( int MoneyBet, int MoneyWon, int MoneyLost, int MoneyLeftOver )
+        public GameData(int MoneyBet, int MoneyWon, int MoneyLost, int MoneyLeftOver)
         {
             this.MoneyBet = MoneyBet;
             _moneyWon = MoneyWon;
@@ -31,25 +31,25 @@
             if (_moneyLost < MostMoneyLost) { MostMoneyLost = _moneyLost; }
         }
 
-        public void SetMoneyWon( int Winnings )
+        public void SetMoneyWon(int Winnings)
         {
             _moneyWon = Winnings;
             MostMoneyMade = (_moneyWon > MostMoneyMade) ? _moneyWon : MostMoneyMade;
 
         }
 
-        public void SetMoneyLost( int CashLost )
+        public void SetMoneyLost(int CashLost)
         {
             _moneyLost = CashLost;
             MostMoneyLost = (_moneyLost < MostMoneyLost) ? _moneyLost : MostMoneyLost;
         }
 
-        public int SetMoneyLeftOver( int LeftOver ) => _moneyLeftOver = LeftOver;
+        public int SetMoneyLeftOver(int LeftOver) => _moneyLeftOver = LeftOver;
 
-        public int GetMoneyLeftOver( ) => _moneyLeftOver;
+        public int GetMoneyLeftOver() => _moneyLeftOver;
 
-        public int GetMoneyWon( ) => _moneyWon;
+        public int GetMoneyWon() => _moneyWon;
 
-        public int GetMoneyLost( ) => _moneyLost;
+        public int GetMoneyLost() => _moneyLost;
     }
 }

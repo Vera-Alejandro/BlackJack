@@ -1,10 +1,10 @@
-﻿using SQLite.Storage;
+﻿using Dapper;
+using SQLite.Storage;
 using Storage;
 using System.Data;
 using System.Data.SQLite;
 using System.Diagnostics;
 using System.IO;
-using Dapper;
 using System.Linq;
 
 namespace SQLite
@@ -21,7 +21,7 @@ namespace SQLite
         /// <param name="FilePath"></param>
         public Database(string FilePath)
         {
-           _sqlitePath = FilePath;
+            _sqlitePath = FilePath;
             constr = $"Data Source={_sqlitePath};Version=3;";
 
             if (!File.Exists(_sqlitePath))
@@ -226,7 +226,7 @@ namespace SQLite
                         "SELECT COUNT(1) as 'Count' FROM MasterProfile WHERE Username = '{0}'",
                         UserName));
 
-            return (count >= 1) ? true: false;
+            return (count >= 1) ? true : false;
         }
     }
 
@@ -236,11 +236,11 @@ namespace SQLite
     internal class SafeProfileInfo
     {
         public int ID { get; set; }
-        public string UserName {get; set;}
-        public byte[] Password {get; set;}
-        public string FullName {get; set;}
-        public string PhoneNumber{get; set;}
-        public string Address {get; set;}
-        public string CardNumber {get; set;}
+        public string UserName { get; set; }
+        public byte[] Password { get; set; }
+        public string FullName { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Address { get; set; }
+        public string CardNumber { get; set; }
     }
 }
