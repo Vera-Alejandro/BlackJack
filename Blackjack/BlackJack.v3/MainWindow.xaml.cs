@@ -1,6 +1,8 @@
 ﻿using Blackjack.GamePlay;
 using System;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace BlackJack.v3
@@ -48,23 +50,15 @@ namespace BlackJack.v3
 
         private void GenerateImages()
         {
-            //Image displayImg = new Image();
-            BitmapImage bitmap = new BitmapImage();
+            Image myImage3 = new Image();
+            BitmapImage bi3 = new BitmapImage();
+            bi3.BeginInit();
+            bi3.UriSource = new Uri("pack://application:,,,/BlackJack.v3;component/Resources/card_back.png");
+            bi3.EndInit();
+            myImage3.Stretch = Stretch.Fill;
+            myImage3.Source = bi3;
 
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri(@"A:\Temp\Card Back.png");
-            bitmap.EndInit();
-
-            CurrentGame
-
-            displayImg.BindingGroup = new System.Windows.Data.BindingGroup();
-            displayImg.IsEnabled = true;
-            displayImg.Margin = new Thickness(0, 90, 160, 0);
-            displayImg.Height = 350;
-            displayImg.Width = 240;
-            displayImg.Source = bitmap;
-
-            //PlayerBettingPanel.Children.Add(displayImg);
+            CardImages.Children.Add(myImage3);
         }
 
         private void UpdateCash()
