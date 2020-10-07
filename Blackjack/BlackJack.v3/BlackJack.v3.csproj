@@ -75,7 +75,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Blackjack.GamePlay\Blackjack.GamePlay.csproj" />
+    <ProjectReference Include="..\Blackjack.Data\Blackjack.Data.csproj" />
     <ProjectReference Include="..\SQLite.DataBase\Storage.csproj" />
   </ItemGroup>
 
