@@ -32,7 +32,6 @@ namespace Blackjack.Data
 
             foreach (Card value in temp.OrderBy(x => rnd.Next()))
             {
-                //value.SetUsedValue(true);   
                 _cards.Add(value);
             }
             foreach (Card card in _cards)
@@ -41,18 +40,25 @@ namespace Blackjack.Data
             }
         }
 
+        public Hand DealHand(int count = 2)
+        {
+            Hand dealtHand = new Hand();
+
+            for (int i = 0; i < count; i++)
+                dealtHand.AddCard(GetCard());
+
+            return dealtHand;
+        }
+
+        public Hand DealerHand()
+        {
+            // TODO: return hand or refrence to hand that has the used value set to false
+            throw new NotImplementedException();
+        }
+
         public Card GetCard()
         {
-            // foreach (Card card in _cards)
-            //{
-            ///   if(!card.GetUsedValue())
-            // {
-            //    card.SetUsedValue(true);
-            //   return card;
-            // }
-            // }
-
-            // Shuffle();
+            
             for (int i = 0; i < 52; i++)
             {
                 if (!_cards[i].UsedValue)

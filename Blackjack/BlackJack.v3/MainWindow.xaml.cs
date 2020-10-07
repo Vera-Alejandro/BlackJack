@@ -29,36 +29,49 @@ namespace BlackJack.v3
         private void MinButton_Click(object sender, RoutedEventArgs e)
             => WindowState = WindowState.Minimized;
 
-
-        private void HitButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void StayButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         public void StartGame()
         {
             CurrentGame = new GameInstance();
             Output.Text = "A New game has begun.";
-            GenerateImages();
-            UpdateCash();
         }
 
         private void GenerateImages()
         {
-            Image myImage3 = new Image();
-            BitmapImage bi3 = new BitmapImage();
-            bi3.BeginInit();
-            bi3.UriSource = new Uri("pack://application:,,,/BlackJack.v3;component/Resources/card_back.png");
-            bi3.EndInit();
-            myImage3.Stretch = Stretch.Fill;
-            myImage3.Source = bi3;
+            var playerCards = CurrentGame.PlayerCardsDisplay();
 
-            CardImages.Children.Add(myImage3);
+            for (int i = 0; i < playerCards.Count; i++)
+            {
+                Image displayImg = new Image();
+                BitmapImage bi3 = new BitmapImage();
+                bi3.BeginInit();
+                bi3.UriSource = new Uri(playerCards[i]);
+                bi3.EndInit();
+                displayImg.Stretch = Stretch.Fill;
+                displayImg.Height = 200;
+                displayImg.Width = 137;
+                displayImg.Margin = new Thickness(0, -350, 225 - (50 * i), 0);
+                displayImg.Source = bi3;
+                
+                CardImages.Children.Add(displayImg);
+            }
+
+            var opponentCards = CurrentGame.OpponentCardsDisplay();
+
+            for (int i = 0; i < opponentCards.Count; i++)
+            {
+                Image displayImg = new Image();
+                BitmapImage bi3 = new BitmapImage();
+                bi3.BeginInit();
+                bi3.UriSource = new Uri(CurrentGame.CardBackImage());
+                bi3.EndInit();
+                displayImg.Stretch = Stretch.Fill;
+                displayImg.Height = 200;
+                displayImg.Width = 137;
+                displayImg.Margin = new Thickness(0, -350, 225 - (50 * i), 0);
+                displayImg.Source = bi3;
+
+                DealerCardImages.Children.Add(displayImg);
+            }
         }
 
         private void UpdateCash()

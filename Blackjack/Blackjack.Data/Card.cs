@@ -1,75 +1,51 @@
 ﻿using Blackjack.Data.Enums;
 
-using System;
-using System.IO;
-
 namespace Blackjack.Data
 {
     public class Card
     {
-        private string _cardImg { get; set; }
-        private string _cardBack { get; set; }
-        private string Name { get; set; }
-        private CardValue _value { get; set; }
-        private SuiteType _suit { get; set; }
-        private bool _beenUsed { get; set; }
+        public CardValue CardValue { get; internal set; }
+        public SuiteType SuiteType { get; internal set; }
+        
+        protected string _cardImg;
+        protected string _cardBack;
+        protected string Name;
+        private bool _beenUsed;
+
 
         public Card(CardValue Value, SuiteType Suit)
         {
-            string pathtoCertCard;
-            string pathToCardDir = @"Blackjack.Data\Resources\card_images";
-            string baseCardDir =
-                Directory.GetParent(
-                    Directory.GetParent(
-                        Directory.GetParent(
-                            Directory.GetParent(
-                                Directory.GetCurrentDirectory()
-                            ).FullName
-                        ).FullName
-                    ).FullName
-                ).FullName;
-            string cardImgDir = Path.Combine(baseCardDir, pathToCardDir);
+            CardValue = Value;
+            SuiteType = Suit;
 
-            _value = Value;
-            _suit = Suit;
             _beenUsed = false;
 
-            foreach (var suit in Enum.GetValues(typeof(SuiteType)))
+            const string cardLocation = "pack://application:,,,/BlackJack.v3;component/Resources/";
 
-            {
-                foreach (var value in Enum.GetValues(typeof(CardValue)))
-                {
-                    pathtoCertCard = @$"{suit}\{value} of {suit}.png";
-                    this._cardImg = Path.Combine(cardImgDir, pathtoCertCard);
-                    pathtoCertCard = string.Empty;
-                }
-            }
+            _cardImg = $"{cardLocation}{CardValue}_of_{SuiteType}.png";
 
-            _cardBack = Path.Combine(cardImgDir, "Card Back.png");
+            _cardBack = "pack://application:,,,/BlackJack.v3;component/Resources/card_back.png";
+
         }
 
-        public CardValue GetCardValue() => _value;
+        public void SetCardValue(CardValue Value)
+            => CardValue = Value;
 
-        public void SetCardValue(CardValue Value) => _value = Value;
-
-        public SuiteType SuiteType => _suit;
-
-        public void SetSuitType(SuiteType Suit) => _suit = Suit;
+        public void SetSuitType(SuiteType Suit)
+            => SuiteType = Suit;
 
         public bool UsedValue => _beenUsed;
 
-        public void SetUsedValue(bool SetCase) => _beenUsed = SetCase;
-
-        public SuiteType SuiteType1 => _suit;
+        public void SetUsedValue(bool SetCase)
+            => _beenUsed = SetCase;
 
         public string ImagePath
             => _cardImg;
 
-        public string BackImagePath
-
+        public string CardBackImage
             => _cardBack;
 
-        public void SetImage(string CardImage) => _cardImg = CardImage;
-
+        public void SetImage(string CardImage)
+            => _cardImg = CardImage;
     }
 }

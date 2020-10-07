@@ -5,14 +5,9 @@ namespace Blackjack.Data
 {
     public class Hand
     {
-        private int _handTotal { get; set; }
-        private List<Card> _currentHand { get; set; }
+        private List<Card> _currentHand = new List<Card>();
+        private int _handTotal;
 
-        public Hand()
-        {
-            _currentHand = new List<Card>();
-            _handTotal = 0;
-        }
 
         public int GetTotal() => _handTotal;
 
@@ -20,7 +15,8 @@ namespace Blackjack.Data
 
         public List<Card> SeeCards() => _currentHand;
 
-        public bool HasBusted() => (_handTotal > 21) ? true : false;
+        public bool HasBusted() 
+            => (_handTotal > 21) ? true : false;
 
         public void ClearHand()
         {
@@ -34,7 +30,7 @@ namespace Blackjack.Data
             int aceCount = 0;
             foreach (Card item in _currentHand)
             {
-                switch (item.GetCardValue())
+                switch (item.CardValue)
                 {
                     case CardValue.Ace:
                         _handTotal += 11;

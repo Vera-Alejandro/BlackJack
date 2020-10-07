@@ -1,16 +1,20 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
 namespace Blackjack.Data
 {
-    public class Player
+    public class AI 
     {
         private int Id;
         private string Name;
-        public double Cash { get; internal set; }
+        private double Cash;
+
         public Hand CurrentHand { get; internal set; }
 
-        public Player(string PlayerName, Hand Hand)
+        public AI(Hand Hand)
         {
-            Name = PlayerName ?? "Guest";
+            Name = "AI";
             CurrentHand = Hand;
             Cash = 500.00;
         }
