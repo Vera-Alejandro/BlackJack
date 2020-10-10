@@ -1,14 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Globalization;
-using System.IO;
-using SQLite;
-using Point = System.Windows.Point;
+﻿using System.Windows;
 
 namespace BlackJack2
 {
@@ -19,7 +9,7 @@ namespace BlackJack2
     {
         #region Move Form
 
-      
+
 
         #endregion
 

@@ -6,16 +6,26 @@ namespace Blackjack.Data
     public class Hand
     {
         private List<Card> _currentHand = new List<Card>();
+
+        public Hand() { }
+
+        public Hand(List<Card> inputCards)
+        {
+            _currentHand = inputCards;
+        }
+
         private int _handTotal;
 
+        public int GetTotal()
+            => _handTotal;
 
-        public int GetTotal() => _handTotal;
+        public int GetNumberOfCards()
+            => _currentHand.Count;
 
-        public int GetNumberOfCards() => _currentHand.Count;
+        public List<Card> SeeCards()
+            => _currentHand;
 
-        public List<Card> SeeCards() => _currentHand;
-
-        public bool HasBusted() 
+        public bool HasBusted()
             => (_handTotal > 21) ? true : false;
 
         public void ClearHand()

@@ -1,5 +1,4 @@
-﻿
-namespace Blackjack.Data
+﻿namespace Blackjack.Data
 {
     public class Player
     {
@@ -14,5 +13,15 @@ namespace Blackjack.Data
             CurrentHand = Hand;
             Cash = 500.00;
         }
+
+        public void PayBetAmount(double Bet)
+            => Cash -= Bet;
+
+        public void CollectWinnings(double winnings)
+            => Cash += winnings;
+
+        public bool HasBusted()
+            => (CurrentHand.GetTotal() > 21) ? true : false;
+
     }
 }

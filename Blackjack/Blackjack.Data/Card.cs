@@ -6,7 +6,7 @@ namespace Blackjack.Data
     {
         public CardValue CardValue { get; internal set; }
         public SuiteType SuiteType { get; internal set; }
-        
+
         protected string _cardImg;
         protected string _cardBack;
         protected string Name;

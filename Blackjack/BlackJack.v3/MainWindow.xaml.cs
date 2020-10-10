@@ -1,4 +1,5 @@
 ﻿using Blackjack.GamePlay;
+using Blackjack.GamePlay.Enums;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -51,7 +52,7 @@ namespace BlackJack.v3
                 displayImg.Width = 137;
                 displayImg.Margin = new Thickness(0, -350, 225 - (50 * i), 0);
                 displayImg.Source = bi3;
-                
+
                 CardImages.Children.Add(displayImg);
             }
 
@@ -74,7 +75,49 @@ namespace BlackJack.v3
             }
         }
 
-        private void UpdateCash()
-           => PlayerCash.Text = CurrentGame.GetCash().ToString();
+
+
+        public void UpdateGameStatus()
+        {
+            GenerateImages();
+
+            HitButton.IsEnabled = false;
+            StayButton.IsEnabled = false;
+
+            PlayerCount.Text = CurrentGame.GetPlayerHandValue().ToString();
+
+            PlayerCash.Text = CurrentGame.GetCash().ToString();
+
+
+            HitButton.IsEnabled = true;
+            StayButton.IsEnabled = true;
+        }
+
+        public void TakeActionOnGameResult(GameResult? gameResult)
+        {
+            if (gameResult == null) return;
+
+            switch (gameResult)
+            {
+                case GameResult.PlayerBust:
+                    Output.Text = ("Player Busted, Computer Wins.");
+                    break;
+                case GameResult.AIBust:
+                    Output.Text = ("Dealer Busted, Player Wins.");
+                    break;
+                case GameResult.PlayerBlackjack:
+                    Output.Text = ("Player got a natural blackjack!");
+                    break;
+                case GameResult.PlayerWin:
+                    Output.Text = ("Player Wins.");
+                    break;
+                case GameResult.Standoff:
+                    Output.Text = ("Player and dealer tied. No payouts awarded.");
+                    break;
+                case GameResult.AILost:
+                    Output.Text = ("Computer Wins.");
+                    break;
+            }
+        }
     }
 }

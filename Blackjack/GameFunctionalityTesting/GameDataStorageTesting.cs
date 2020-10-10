@@ -13,7 +13,7 @@ namespace GameFunctionalityTesting
         protected SuiteType _suit;
         private bool _beenUsed;
 
-        CardTest(CardValue Value, SuiteType Suite) : base (Value, Suite)
+        CardTest(CardValue Value, SuiteType Suite) : base(Value, Suite)
         {
 
         }
@@ -34,7 +34,7 @@ namespace GameFunctionalityTesting
             Card Eight_of_Diamonds = new Card(CardValue.Eight, SuiteType.Diamonds);
 
 
-            
+
 
         }
     }

@@ -51,14 +51,11 @@ namespace Blackjack.Data
         }
 
         public Hand DealerHand()
-        {
-            // TODO: return hand or refrence to hand that has the used value set to false
-            throw new NotImplementedException();
-        }
+            => new Hand(_cards.Where(c => c.UsedValue == false).ToList());
 
         public Card GetCard()
         {
-            
+
             for (int i = 0; i < 52; i++)
             {
                 if (!_cards[i].UsedValue)
