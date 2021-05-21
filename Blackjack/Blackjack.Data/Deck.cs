@@ -7,64 +7,59 @@ namespace Blackjack.Data
 {
     public class Deck
     {
-        List<Card> _cards { get; set; }
+        private List<Card> _cards { get; set; }
 
-        public Deck( )
+        public Deck()
         {
             _cards = new List<Card>();
 
-            foreach (SuiteType suit in (SuiteType[])Enum.GetValues( typeof( SuiteType ) ))
+            for (int i = 0; i < 4; i++)
             {
-                foreach (CardValue value in (CardValue[])Enum.GetValues( typeof( CardValue ) ))
+                foreach (SuiteType suit in (SuiteType[])Enum.GetValues(typeof(SuiteType)))
                 {
-                    Card newCard = new Card( value, suit );
-                    _cards.Add( newCard );
+                    foreach (CardValue value in (CardValue[])Enum.GetValues(typeof(CardValue)))
+                    {
+                        _cards.Add(new Card(value, suit));
+                    }
                 }
             }
         }
 
-        public void Shuffle( )
+        public Card GetCard()
         {
-            Card[] temp = _cards.ToArray();
-            Random rnd = new Random();
+            Random rand = new Random();
+            Card returnCard;
+            bool used = true;
+            int randCardIndex;
 
-            _cards.Clear();
+            do
+            {
+                randCardIndex = rand.Next(208);
 
-            foreach (Card value in temp.OrderBy( x => rnd.Next() ))
-            {
-                //value.SetUsedValue(true);   
-                _cards.Add( value );
-            }
-            foreach (Card card in _cards)
-            {
-                card.SetUsedValue( false );
-            }
+                returnCard = _cards[randCardIndex];
+
+                used = returnCard.UsedValue;
+
+            } while (used);
+
+            _cards[randCardIndex].SetUsedValue(true);
+            
+            return returnCard;
         }
 
-        public Card GetCard( )
+        public int GetUnusedCardCount()
         {
-            // foreach (Card card in _cards)
-            //{
-            ///   if(!card.GetUsedValue())
-            // {
-            //    card.SetUsedValue(true);
-            //   return card;
-            // }
-            // }
+            int cardCount = 0;
 
-            // Shuffle();
-            for (int i = 0; i < 52; i++)
+            foreach (var card in _cards)
             {
-                if (!_cards[i].UsedValue)
+                if (card.UsedValue == false)
                 {
-                    _cards[i].SetUsedValue( true );
-                    return _cards[i];
+                    cardCount++;
                 }
             }
 
-            Shuffle();
-            _cards[0].SetUsedValue( true );
-            return _cards[0];
+            return cardCount;
         }
     }
 }

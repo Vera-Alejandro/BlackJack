@@ -4,6 +4,7 @@
     {
         Win,
         Loss,
+        Loss_PlayerBust,
         Standoff,
         PlayerBlackjack
     }

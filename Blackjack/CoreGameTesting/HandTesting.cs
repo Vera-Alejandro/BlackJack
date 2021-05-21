@@ -7,11 +7,6 @@ namespace CoreGameTesting
 {
     public class HandTests
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
         public void NormalCard_GetValue()
         {
@@ -86,6 +81,21 @@ namespace CoreGameTesting
             Assert.AreEqual(19, testHand3.GetTotal());
         }
 
+        [Test]
+        public void Shuffle_RandomDeckShuffle()
+        {
+            Deck testDeck1 = new Deck();
+            Deck testDeck2 = new Deck();
+            
 
+            Card card1 = testDeck1.GetCard();
+            Card card2 = testDeck2.GetCard();
+
+            Card card3 = testDeck1.GetCard();
+            Card card4 = testDeck2.GetCard();
+
+            Assert.AreNotEqual(card1, card2);
+            Assert.AreNotEqual(card3, card4);
+        }
     }
 }

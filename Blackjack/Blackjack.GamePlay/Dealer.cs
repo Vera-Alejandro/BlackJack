@@ -11,5 +11,14 @@
             CurrentHand = new Hand();
         }
 
+        public bool HasDealerBusted()
+        {
+            return CurrentHand.HasBusted();
+        }
+
+        public void ResetRound()
+        {
+            CurrentHand.ClearHand();
+        }
     }
 }

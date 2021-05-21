@@ -6,11 +6,6 @@ namespace CoreGameTesting
 {
     public class CardTests
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
         public void NormalCard_GetValue()
         {

@@ -40,18 +40,98 @@ namespace Blackjack.GamePlay
             return player.CurrentBet == null;
         }
 
+        public void UserHit(UserType user)
+        {
+            HitUser(UserType.Player);
+        }
+
+        public bool HasUserBusted(UserType user)
+        {
+            if (user == UserType.Player)
+            {
+                return player.HasPlayerBusted();
+            }
+            else
+            {
+                return dealer.HasDealerBusted();
+            }
+        }
+
+        private void HitUser(UserType user)
+        {
+            if (user == UserType.Player)
+            {
+                player.CurrentHand.AddCard(deck.GetCard());
+            }
+            else
+            {
+                dealer.CurrentHand.AddCard(deck.GetCard());
+            }
+        }
+
         public void InitDealCards()
         {
-            player.CurrentHand.AddCard(deck.GetCard());
-            player.CurrentHand.AddCard(deck.GetCard());
+            HitUser(UserType.Player);
+            HitUser(UserType.Player);
 
-            dealer.CurrentHand.AddCard(deck.GetCard());
-            dealer.CurrentHand.AddCard(deck.GetCard());
+            HitUser(UserType.Dealer);
+            HitUser(UserType.Dealer);
         }
 
         public string GetPlayerCardCount()
         {
             return player.CurrentHand.GetTotal().ToString();
+        }
+
+        public string GetDealerCardCount()
+        {
+            return dealer.CurrentHand.GetTotal().ToString();
+        }
+
+        public void NextRound()
+        {
+            player.ResetRound();
+
+            dealer.ResetRound();
+        }
+
+        public GameResult DealersTurn()
+        {
+            while (dealer.CurrentHand.GetTotal() < 17)
+            {
+                HitUser(UserType.Dealer);
+            }
+
+            if (dealer.CurrentHand.GetTotal() == player.CurrentHand.GetTotal())
+            {
+                return GameResult.Standoff;
+            }
+
+            if (dealer.HasDealerBusted())
+            {
+                return GameResult.Win;
+            }
+
+            if (dealer.CurrentHand.GetTotal() > player.CurrentHand.GetTotal())
+            {
+                return GameResult.Loss;
+            }
+            else
+            {
+                return GameResult.Win;
+            }
+        }
+
+        public void Payout(GameResult Result)
+        {
+            var payoutAmt = player.CurrentBet;
+
+            if (Result == GameResult.PlayerBlackjack)
+            {
+                payoutAmt *= 1.5f;
+            }
+
+            player.CollectWinnings(payoutAmt);
         }
     }
 }

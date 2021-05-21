@@ -20,7 +20,7 @@ namespace Blackjack
 
         public List<Card> SeeCards() => _currentHand;
 
-        public bool HasBusted() => (_handTotal > 21) ? true : false;
+        public bool HasBusted() => (_handTotal > 21);
 
         public void ClearHand()
         {

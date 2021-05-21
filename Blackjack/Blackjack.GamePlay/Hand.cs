@@ -7,12 +7,6 @@ namespace Blackjack.GamePlay
     public class Hand
     {
         public List<Card> _currentHand { get; private set; }
-        public int NumberOfCards
-        {
-            get => NumberOfCards;
-            set => value = _currentHand.Count;
-        }
-
 
         public Hand()
         {
@@ -44,9 +38,8 @@ namespace Blackjack.GamePlay
 
             return total;
         }
-        public List<Card> SeeCards() => _currentHand;
 
-        public bool HasBusted() => (GetTotal() > 21) ? true : false;
+        public bool HasBusted() => (GetTotal() > 21);
 
         public void ClearHand()
         {
