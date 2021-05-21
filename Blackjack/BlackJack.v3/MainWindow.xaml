@@ -10,16 +10,16 @@
         <!--Betting Stack Panel-->
         <StackPanel VerticalAlignment="Bottom" Height="125" Margin="10,10">
             <TextBlock Text="Bet" Foreground="White" FontSize="20" Margin="25,20" Width="75" HorizontalAlignment="Left" TextAlignment="Center"/>
-            <Button x:Name="BetAllButton" Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Left" Margin="25,-35" Content="Bet All" FontSize="18"/>
-            <Button x:Name="BetOneButton" Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,825,-35" Content="$1" FontSize="18"/>
-            <Button x:Name="BetFiveButton" Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,725,-35" Content="$5" FontSize="18"/>
-            <Button x:Name="BetTenButton" Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,625,-35" Content="$10" FontSize="18"/>
-            <Button x:Name="BetTwentyFiveButton" Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,525,-35" Content="$25" FontSize="18"/>
-            <Button x:Name="BetFiftyButton" Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,425,-35" Content="$50" FontSize="18"/>
-            <Button x:Name="BetOneHundredButton" Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,325,-35" Content="$100" FontSize="18"/>
-            <Button x:Name="BetTwoHundredFiftyButton" Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,225,-35" Content="$250" FontSize="18"/>
-            <Button x:Name="BetFiveHundredButton" Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,125,-35" Content="$500" FontSize="18"/>
-            <Button x:Name="BetOneThousandButton" Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,25,-35" Content="$1,000" FontSize="18"/>
+            <Button x:Name="BetAllButton" Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Left" Margin="25,-35" Content="Bet All" FontSize="18" Click="PlaceBet" Tag="BetAll"/>
+            <Button x:Name="BetOneButton" Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,825,-35" Content="$1" FontSize="18" Click="PlaceBet" Tag="1"/>
+            <Button x:Name="BetFiveButton" Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,725,-35" Content="$5" FontSize="18" Click="PlaceBet" Tag="5"/>
+            <Button x:Name="BetTenButton" Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,625,-35" Content="$10" FontSize="18" Click="PlaceBet" Tag="10"/>
+            <Button x:Name="BetTwentyFiveButton" Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,525,-35" Content="$25" FontSize="18" Click="PlaceBet" Tag="25"/>
+            <Button x:Name="BetFiftyButton" Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,425,-35" Content="$50" FontSize="18" Click="PlaceBet" Tag="50"/>
+            <Button x:Name="BetOneHundredButton" Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,325,-35" Content="$100" FontSize="18" Click="PlaceBet" Tag="100"/>
+            <Button x:Name="BetTwoHundredFiftyButton" Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,225,-35" Content="$250" FontSize="18" Click="PlaceBet" Tag="250"/>
+            <Button x:Name="BetFiveHundredButton" Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,125,-35" Content="$500" FontSize="18" Click="PlaceBet" Tag="500"/>
+            <Button x:Name="BetOneThousandButton" Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,25,-35" Content="$1,000" FontSize="18" Click="PlaceBet" Tag="1000"/>
         </StackPanel>
 
         <Image Source="/Resources/BackJack Title.png" Width="220"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="70"/>

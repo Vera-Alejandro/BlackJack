@@ -43,8 +43,6 @@ namespace BlackJack.v3
         {
             CurrentGame = new GameInstance();
             Output.Text = "A New game has begun.";
-            GenerateImages();
-            UpdateCash();
         }
 
         private void GenerateImages()
@@ -67,7 +65,64 @@ namespace BlackJack.v3
             //PlayerBettingPanel.Children.Add(displayImg);
         }
 
-        private void UpdateCash()
-           => PlayerCash.Text = CurrentGame.GetCash().ToString();
+        private void PlaceBet(object sender, RoutedEventArgs e)
+        {
+            var amount = ((Button)sender).Tag.ToString();
+
+            var cashAmount = amount == "BetAll" ? CurrentGame.GetPlayerCash() : float.Parse(amount);
+
+            if (!CurrentGame.SetBetAmount(cashAmount))
+            {
+                Output.Text = "Player does not have enough cash to place a bet.";
+                return;
+            }
+
+            UpdatePlayerCashDisplay();
+
+            DisableBetButtons();
+
+            Output.Text = $"Player Bet {cashAmount}";
+
+            CurrentGame.InitDealCards();
+
+            PlayerCount.Text = CurrentGame.GetPlayerCardCount();
+
+            Output.Text = $"Player Bet {cashAmount}";
+        }
+
+        private void UpdatePlayerCashDisplay()
+        {
+            PlayerCash.Text = CurrentGame.GetPlayerCashString();
+        }
+
+        private void EnableBetButtons()
+        {
+            BetAllButton.IsEnabled = true;
+
+            BetOneButton.IsEnabled = true;
+            BetFiveButton.IsEnabled = true;
+            BetTenButton.IsEnabled = true;
+            BetTwentyFiveButton.IsEnabled = true;
+            BetFiftyButton.IsEnabled = true;
+            BetOneHundredButton.IsEnabled = true;
+            BetTwoHundredFiftyButton.IsEnabled = true;
+            BetFiveHundredButton.IsEnabled = true;
+            BetOneThousandButton.IsEnabled = true;
+        }
+
+        private void DisableBetButtons()
+        {
+            BetAllButton.IsEnabled = false;
+
+            BetOneButton.IsEnabled = false;
+            BetFiveButton.IsEnabled = false;
+            BetTenButton.IsEnabled = false;
+            BetTwentyFiveButton.IsEnabled = false;
+            BetFiftyButton.IsEnabled = false;
+            BetOneHundredButton.IsEnabled = false;
+            BetTwoHundredFiftyButton.IsEnabled = false;
+            BetFiveHundredButton.IsEnabled = false;
+            BetOneThousandButton.IsEnabled = false;
+        }
     }
 }
