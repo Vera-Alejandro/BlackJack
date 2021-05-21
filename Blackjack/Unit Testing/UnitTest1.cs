@@ -11,7 +11,7 @@ using SQLite.Storage;
 
 namespace Unit_Testing
 {
-    [TestClass]
+    //[TestClass]
     public class UnitTest1
     {
 

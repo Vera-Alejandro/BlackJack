@@ -12,11 +12,11 @@ namespace Blackjack.Data
         private string _cardImg { get; set; }
         private string _cardBack { get; set; }
         private string Name { get; set; }
-        private CardValue _value { get; set; }
+        public CardValue CardValue { get; private set; }
         private SuiteType _suit { get; set; }
         private bool _beenUsed { get; set; }
 
-        public Card( CardValue Value, SuiteType Suit )
+        public Card( CardValue cardValue, SuiteType suitType )
         {
             string pathtoCertCard;
             string pathToCardDir = @"Blackjack.Data\Resources\card_images";
@@ -32,8 +32,8 @@ namespace Blackjack.Data
                 ).FullName;
             string cardImgDir = Path.Combine(baseCardDir, pathToCardDir );
 
-            _value = Value;
-            _suit = Suit;
+            CardValue = cardValue;
+            _suit = suitType;
             _beenUsed = false;
           
             foreach (var suit in Enum.GetValues( typeof( SuiteType ) ))
@@ -50,9 +50,24 @@ namespace Blackjack.Data
             _cardBack = Path.Combine( cardImgDir, "Card Back.png");
         }
 
-        public CardValue GetCardValue( ) => _value;
+        public int GetCardValue()
+        {
+            if (CardValue == CardValue.Ace)
+            {
+                return 11;
+            }
 
-        public void SetCardValue( CardValue Value ) => _value = Value;
+            int numValue = (int) CardValue;
+
+            if (numValue > 10)
+            {
+                return 10;
+            }
+
+            return numValue;
+        }
+
+        public void SetCardValue( CardValue Value ) => CardValue = Value;
 
         public SuiteType SuiteType => _suit;
 
