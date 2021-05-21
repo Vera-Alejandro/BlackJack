@@ -51,7 +51,7 @@ namespace Blackjack.GamePlay
 
         public string GetPlayerCardCount()
         {
-            return player.CurrentHand.Total.ToString();
+            return player.CurrentHand.GetTotal().ToString();
         }
     }
 }

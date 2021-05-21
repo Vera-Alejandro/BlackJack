@@ -6,21 +6,6 @@ namespace Blackjack.GamePlay
 {
     public class Hand
     {
-        public int Total
-        {
-            get => Total;
-            set
-            {
-                var temp = 0;
-                foreach (var card in _currentHand)
-                {
-                    temp += card.GetCardValue();
-                }
-
-                value = temp;
-            }
-        }
-
         public List<Card> _currentHand { get; private set; }
         public int NumberOfCards
         {
@@ -32,16 +17,39 @@ namespace Blackjack.GamePlay
         public Hand()
         {
             _currentHand = new List<Card>();
-            Total = 0;
         }
 
+        public int GetTotal()
+        {
+            var total = 0;
+
+            foreach (var card in _currentHand)
+            {
+                if (card.CardValue == CardValue.Ace)
+                {
+                    if (total + card.GetCardValue() > 21)
+                    {
+                        total += 1;
+                    }
+                    else
+                    {
+                        total += card.GetCardValue();
+                    }
+                }
+                else
+                {
+                    total += card.GetCardValue();
+                }
+            }
+
+            return total;
+        }
         public List<Card> SeeCards() => _currentHand;
 
-        public bool HasBusted() => (Total > 21) ? true : false;
+        public bool HasBusted() => (GetTotal() > 21) ? true : false;
 
         public void ClearHand()
         {
-            Total = 0;
             _currentHand.Clear();
         }
 
