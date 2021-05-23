@@ -1,9 +1,5 @@
 ﻿using Blackjack.Data.Enums;
-
-using System;
 using System.IO;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace Blackjack.Data
 {
@@ -16,11 +12,11 @@ namespace Blackjack.Data
         private SuiteType _suit { get; set; }
         private bool _beenUsed { get; set; }
 
-        public Card( CardValue cardValue, SuiteType suitType )
+        public Card(CardValue cardValue, SuiteType suitType)
         {
             string pathtoCertCard;
             string pathToCardDir = @"Blackjack.Data\Resources\card_images";
-            string baseCardDir = 
+            string baseCardDir =
                 Directory.GetParent(
                     Directory.GetParent(
                         Directory.GetParent(
@@ -30,24 +26,16 @@ namespace Blackjack.Data
                         ).FullName
                     ).FullName
                 ).FullName;
-            string cardImgDir = Path.Combine(baseCardDir, pathToCardDir );
+            string cardImgDir = Path.Combine(baseCardDir, pathToCardDir);
 
             CardValue = cardValue;
             _suit = suitType;
             _beenUsed = false;
-          
-            foreach (var suit in Enum.GetValues( typeof( SuiteType ) ))
 
-            {
-                foreach (var value in Enum.GetValues( typeof( CardValue ) ))
-                {
-                    pathtoCertCard = @$"{suit}\{value} of {suit}.png";
-                    this._cardImg = Path.Combine(cardImgDir, pathtoCertCard);
-                    pathtoCertCard = string.Empty;
-                }
-            }
+            pathtoCertCard = @$"{suitType}\{cardValue} of {suitType}.png";
+            this._cardImg = Path.Combine(cardImgDir, pathtoCertCard);
 
-            _cardBack = Path.Combine( cardImgDir, "Card Back.png");
+            _cardBack = Path.Combine(cardImgDir, "Card Back.png");
         }
 
         public int GetCardValue()
@@ -57,7 +45,7 @@ namespace Blackjack.Data
                 return 11;
             }
 
-            int numValue = (int) CardValue;
+            int numValue = (int)CardValue;
 
             if (numValue > 10)
             {
@@ -67,15 +55,15 @@ namespace Blackjack.Data
             return numValue;
         }
 
-        public void SetCardValue( CardValue Value ) => CardValue = Value;
+        public void SetCardValue(CardValue Value) => CardValue = Value;
 
         public SuiteType SuiteType => _suit;
 
-        public void SetSuitType( SuiteType Suit ) => _suit = Suit;
+        public void SetSuitType(SuiteType Suit) => _suit = Suit;
 
         public bool UsedValue => _beenUsed;
 
-        public void SetUsedValue( bool SetCase ) => _beenUsed = SetCase;
+        public void SetUsedValue(bool SetCase) => _beenUsed = SetCase;
 
         public SuiteType SuiteType1 => _suit;
 
@@ -86,7 +74,7 @@ namespace Blackjack.Data
 
             => _cardBack;
 
-        public void SetImage( string CardImage ) => _cardImg = CardImage;
+        public void SetImage(string CardImage) => _cardImg = CardImage;
 
     }
 }

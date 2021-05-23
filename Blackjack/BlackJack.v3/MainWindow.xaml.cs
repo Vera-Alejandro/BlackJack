@@ -53,24 +53,82 @@ namespace BlackJack.v3
             Output.Text = "A New game has begun.";
         }
 
-        private void GenerateImages()
+        private void DisplayPlayerCards()
         {
-            //Image displayImg = new Image();
-            BitmapImage bitmap = new BitmapImage();
+            var cardImgs = CurrentGame.GetCardImages();
+            string cardBackImg = CurrentGame.GetCardBackImage();
+            int count = 0;
 
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri(@"A:\Temp\Card Back.png");
-            bitmap.EndInit();
+            foreach (var img in cardImgs)
+            {
+                BitmapImage bitmap = new BitmapImage();
 
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(@img);
+                bitmap.EndInit();
 
-            displayImg.BindingGroup = new System.Windows.Data.BindingGroup();
-            displayImg.IsEnabled = true;
-            displayImg.Margin = new Thickness(0, 90, 160, 0);
-            displayImg.Height = 350;
-            displayImg.Width = 240;
-            displayImg.Source = bitmap;
+                switch (count)
+                {
+                    case 1:
+                        DisplayImg1.BindingGroup = new System.Windows.Data.BindingGroup();
+                        DisplayImg1.IsEnabled = true;
+                        DisplayImg1.Margin = new Thickness(0, 90, 160, 0);
+                        DisplayImg1.Height = 350;
+                        DisplayImg1.Width = 240;
+                        DisplayImg1.Source = bitmap;
+                        return;
+                    case 2:
+                        DisplayImg2.BindingGroup = new System.Windows.Data.BindingGroup();
+                        DisplayImg2.IsEnabled = true;
+                        DisplayImg2.Margin = new Thickness(0, 90, 110, 0);
+                        DisplayImg2.Height = 350;
+                        DisplayImg2.Width = 240;
+                        DisplayImg2.Source = bitmap;
+                        return;
+                    case 3:
+                        DisplayImg3.BindingGroup = new System.Windows.Data.BindingGroup();
+                        DisplayImg3.IsEnabled = true;
+                        DisplayImg3.Margin = new Thickness(0, 90, 10, 0);
+                        DisplayImg3.Height = 350;
+                        DisplayImg3.Width = 240;
+                        DisplayImg3.Source = bitmap;
+                        return;
+                    case 4:
+                        DisplayImg4.BindingGroup = new System.Windows.Data.BindingGroup();
+                        DisplayImg4.IsEnabled = true;
+                        DisplayImg4.Margin = new Thickness(0, 90, 130, 0);
+                        DisplayImg4.Height = 350;
+                        DisplayImg4.Width = 240;
+                        DisplayImg4.Source = bitmap;
+                        return;
+                    case 5:
+                        DisplayImg5.BindingGroup = new System.Windows.Data.BindingGroup();
+                        DisplayImg5.IsEnabled = true;
+                        DisplayImg5.Margin = new Thickness(0, 90, 160, 0);
+                        DisplayImg5.Height = 350;
+                        DisplayImg5.Width = 240;
+                        DisplayImg5.Source = bitmap;
+                        return;
+                    case 6:
+                        DisplayImg6.BindingGroup = new System.Windows.Data.BindingGroup();
+                        DisplayImg6.IsEnabled = true;
+                        DisplayImg6.Margin = new Thickness(0, 90, 160, 0);
+                        DisplayImg6.Height = 350;
+                        DisplayImg6.Width = 240;
+                        DisplayImg6.Source = bitmap;
+                        return;
+                    case 7: 
+                        DisplayImg7.BindingGroup = new System.Windows.Data.BindingGroup();
+                        DisplayImg7.IsEnabled = true;
+                        DisplayImg7.Margin = new Thickness(0, 90, 160, 0);
+                        DisplayImg7.Height = 350;
+                        DisplayImg7.Width = 240;
+                        DisplayImg7.Source = bitmap;
+                        return;
+                }
 
-            //PlayerBettingPanel.Children.Add(displayImg);
+                count++;
+            }
         }
 
         private void PlaceBet(object sender, RoutedEventArgs e)
@@ -92,6 +150,8 @@ namespace BlackJack.v3
             Output.Text = $"Player Bet {cashAmount}";
 
             CurrentGame.InitDealCards();
+
+            DisplayPlayerCards();
 
             UpdateUserHandTotal(UserType.Player);
 
@@ -197,6 +257,8 @@ namespace BlackJack.v3
                     endGameText = $"Player has Won! {playerCount} to {dealerCount}";
                     break;
             }
+
+            Payout(reason);
 
             Output.Text = endGameText;
 

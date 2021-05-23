@@ -124,14 +124,34 @@ namespace Blackjack.GamePlay
 
         public void Payout(GameResult Result)
         {
-            var payoutAmt = player.CurrentBet;
-
-            if (Result == GameResult.PlayerBlackjack)
+            if (Result == GameResult.Win || Result == GameResult.PlayerBlackjack)
             {
-                payoutAmt *= 1.5f;
+                var payoutAmt = player.CurrentBet;
+
+                if (Result == GameResult.PlayerBlackjack)
+                {
+                    payoutAmt *= 1.5f;
+                }
+
+                player.CollectWinnings(payoutAmt);
+            }
+        }
+
+        public List<string> GetCardImages()
+        {
+            List<string> imgs = new List<string>();
+
+            foreach (var card in player.CurrentHand._currentHand)
+            {
+                imgs.Add(card.ImagePath);
             }
 
-            player.CollectWinnings(payoutAmt);
+            return imgs;
+        }
+
+        public string GetCardBackImage()
+        {
+            return player.CurrentHand._currentHand.FirstOrDefault()?.BackImagePath;
         }
     }
 }

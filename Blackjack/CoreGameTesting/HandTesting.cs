@@ -15,7 +15,6 @@ namespace CoreGameTesting
             testHand.AddCard(new Card(CardValue.Six, SuiteType.Diamonds));
             testHand.AddCard(new Card(CardValue.Four, SuiteType.Diamonds));
 
-
             Assert.AreEqual(10, testHand.GetTotal());
         }
 

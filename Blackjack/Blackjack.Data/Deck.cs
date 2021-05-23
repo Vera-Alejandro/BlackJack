@@ -1,7 +1,6 @@
 ﻿using Blackjack.Data.Enums;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Blackjack.Data
 {
@@ -43,23 +42,8 @@ namespace Blackjack.Data
             } while (used);
 
             _cards[randCardIndex].SetUsedValue(true);
-            
+
             return returnCard;
-        }
-
-        public int GetUnusedCardCount()
-        {
-            int cardCount = 0;
-
-            foreach (var card in _cards)
-            {
-                if (card.UsedValue == false)
-                {
-                    cardCount++;
-                }
-            }
-
-            return cardCount;
         }
     }
 }
