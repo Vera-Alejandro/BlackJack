@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="Profile" Height="450" Width="800">
     <Grid>
-        
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+            <Button x:Name="MainMenu" Content="Main Menu" Height="30" Width="100" Margin="10 0" Click="MainMenu_OnClick"/>
+            <Button x:Name="SignUp" Content="Sign Up" Height="30" Width="100" Margin="10 0 " Click="SignUp_OnClick"/>
+            <Button x:Name="AddFunds" Content="Add Funds" Height="30" Width="100" Margin="10 0 " Click="AddFunds_OnClick"/>
+            <Button x:Name="LogIn" Content="Log In" Height="30" Width="100" Margin="10 0" Click="LogIn_OnClick"/>
+
+        </StackPanel>
     </Grid>
 </Window>

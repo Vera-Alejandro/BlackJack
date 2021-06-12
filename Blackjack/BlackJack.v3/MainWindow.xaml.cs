@@ -260,7 +260,8 @@ namespace BlackJack.v3
 
         private void OpenProfile_OnClick(object Sender, RoutedEventArgs E)
         {
-            Profil
+            Profile profileWindow = new Profile();
+            profileWindow.Show();
         }
     }
 }
