@@ -1,10 +1,8 @@
 ﻿using Blackjack.GamePlay;
 using System;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Media.Imaging;
 using Blackjack.Data;
 using Blackjack.Data.Enums;
@@ -258,6 +256,11 @@ namespace BlackJack.v3
             CurrentGame.Payout(result);
 
             UpdatePlayerCashDisplay();
+        }
+
+        private void OpenProfile_OnClick(object Sender, RoutedEventArgs E)
+        {
+            Profil
         }
     }
 }

@@ -22,7 +22,11 @@
             <Button x:Name="BetOneThousandButton" Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,25,-35" Content="$1,000" FontSize="18" Click="PlaceBet" Tag="1000"/>
         </StackPanel>
 
-        <Image Source="/Resources/BackJack Title.png" Width="220"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="70"/>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Horizontal">
+            <Image Source="/Resources/BackJack Title.png" Width="220"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="70"/>
+            <Button x:Name="OpenProfile" Height="50" Width="100" Margin="20" Foreground="White" BorderBrush="White" Background="Black" Content="Profile" FontSize="20" Click="OpenProfile_OnClick"/>
+        </StackPanel>
+
 
         <!--Top Right Buttons-->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">

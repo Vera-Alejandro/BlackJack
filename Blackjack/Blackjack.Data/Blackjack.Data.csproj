@@ -28,12 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="PresentationCore">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\PresentationCore.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Resources\BackJack Title.png" />
     <Resource Include="Resources\Card Back.png" />
     <Resource Include="Resources\CloseButton.png" />
