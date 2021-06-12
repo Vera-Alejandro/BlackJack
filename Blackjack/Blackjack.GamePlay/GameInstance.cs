@@ -137,23 +137,14 @@ namespace Blackjack.GamePlay
             }
         }
 
-        public List<string> GetPlayerCarGetCardImages()
+        public List<string> GetPlayerCardImages()
         {
-            List<string> imgs = new List<string>();
-
-            foreach (var card in player.CurrentHand.HandCards)
-            {
-                imgs.Add(card.ImagePath);
-            }
-
-
-            return player.CurrentHand.HandCards
-
-
-
+            return player.CurrentHand.HandCards.Select(card => card.ImagePath).ToList();
         }
-
-
+        public List<string> GetDealerCardImages()
+        {
+            return dealer.CurrentHand.HandCards.Select(card => card.ImagePath).ToList();
+        }
 
         public string GetCardBackImage()
         {

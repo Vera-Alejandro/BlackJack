@@ -48,6 +48,9 @@
             <TextBlock x:Name="DealerCountTitle" Foreground="White" FontSize="18" HorizontalAlignment="Left" ><Run Text="Dealer Count: "/><Run Text=" "/><InlineUIContainer>
                 <TextBlock x:Name="DealerCount" Foreground="White" Text="0" FontSize="18" VerticalAlignment="Bottom" />
             </InlineUIContainer></TextBlock>
+
+            <Grid x:Name="DealerCardContainer" Height="475">
+            </Grid>
         </StackPanel>
 
         <!--Player Panel-->
@@ -60,15 +63,7 @@
                 <TextBlock x:Name="PlayerCash" Foreground="White" Text="500" FontSize="18" />
             </InlineUIContainer></TextBlock>
 
-            <Grid x:Name="CardContainer" Height="475">
-
-                <!--<Image x:Name="DisplayImg1" Source="/Ace of Clubs.png" Height="240" Margin="0 90 160 0"/>
-                <Image x:Name="DisplayImg2" Source="/Ace of Clubs.png" Height="240" Margin="0 90 110 0"/>
-                <Image x:Name="DisplayImg3" Source="/Ace of Clubs.png" Height="240" Margin="0 90 60 0"/>
-                <Image x:Name="DisplayImg4" Source="/Ace of Clubs.png" Height="240" Margin="0 90 10 0"/>
-                <Image x:Name="DisplayImg5" Source="/Ace of Clubs.png" Height="240" Margin="0 90 -40 0"/>
-                <Image x:Name="DisplayImg6" Source="/Ace of Clubs.png" Height="240" Margin="0 90 -90 0"/>
-                <Image x:Name="DisplayImg7" Source="/Ace of Clubs.png" Height="240" Margin="0 90 -140 0"/>-->
+            <Grid x:Name="PlayerCardContainer" Height="475">
             </Grid>
 
         </StackPanel>

@@ -23,11 +23,6 @@ namespace Blackjack.GamePlay
             return CurrentHand.HasBusted();
         }
 
-        /// <summary>
-        /// Sets the player bet
-        /// </summary>
-        /// <param name="BetAmount"></param>
-        /// <returns>true if bet was successful false if use did not have enough cash</returns>
         public bool PlaceBet(float BetAmount)
         {
             if (Cash > 0 && BetAmount <= Cash)

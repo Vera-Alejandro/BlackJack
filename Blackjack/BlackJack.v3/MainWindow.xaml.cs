@@ -58,7 +58,7 @@ namespace BlackJack.v3
         private void DisplayCardImages(UserType user)
         {
 
-            var cardImgs =  user == UserType.Player ? CurrentGame.GetPlayerCarGetCardImages() : CurrentGame.GetPlayerCarGetCardImages();
+            var cardImgs =  user == UserType.Player ? CurrentGame.GetPlayerCardImages() : CurrentGame.GetDealerCardImages();
             var cardBackImg = CurrentGame.GetCardBackImage();
             var marginRight = 160;
 
@@ -81,13 +81,16 @@ namespace BlackJack.v3
                     Visibility = Visibility.Visible
                 };
 
-                CardContainer.Children.Add(displayImg);
+                _ = user == UserType.Player ? PlayerCardContainer.Children.Add(displayImg) : DealerCardContainer.Children.Add(displayImg);
                 marginRight -= 75;
             }
         }
 
+
         private void PlaceBet(object sender, RoutedEventArgs e)
         {
+            ResetCardImages();
+
             var amount = ((Button)sender).Tag.ToString();
 
             var cashAmount = amount == "BetAll" ? CurrentGame.GetPlayerCash() : float.Parse(amount);
@@ -106,9 +109,8 @@ namespace BlackJack.v3
 
             CurrentGame.InitDealCards();
 
-            DisplayCardImages();
-
             UpdateUserHandTotal(UserType.Player);
+            UpdateUserHandTotal(UserType.Dealer);
 
             Output.Text = $"Player Bet {cashAmount}";
 
@@ -124,7 +126,8 @@ namespace BlackJack.v3
 
         private void UpdateUserHandTotal(UserType user)
         {
-            DisplayCardImages();
+            DisplayCardImages(UserType.Player);
+            DisplayCardImages(UserType.Dealer);
 
             string total;
 
@@ -146,7 +149,19 @@ namespace BlackJack.v3
 
             if (total == "21")
             {
-                EndGame(GameResult.PlayerBlackjack);
+                GameResult whoWon;
+
+                if (user == UserType.Player)
+                {
+                    whoWon = GameResult.PlayerBlackjack;
+                }
+                else
+                {
+                    whoWon = GameResult.Loss;
+                }
+
+                EndGame(whoWon);
+
             }
         }
 
@@ -198,6 +213,8 @@ namespace BlackJack.v3
             string playerCount = CurrentGame.GetPlayerCardCount();
             string dealerCount = CurrentGame.GetDealerCardCount();
 
+
+
             switch (reason)
             {
                 case GameResult.Loss:
@@ -226,9 +243,19 @@ namespace BlackJack.v3
             EnableBetButtons();
 
             CurrentGame.NextRound();
+        }
 
-            UpdateUserHandTotal(UserType.Player);
-            UpdateUserHandTotal(UserType.Dealer);
+        private void ResetCardImages()
+        {
+            foreach (UIElement child in PlayerCardContainer.Children)
+            {
+                child.Visibility = Visibility.Hidden;
+            }
+
+            foreach (UIElement child in DealerCardContainer.Children)
+            {
+                child.Visibility = Visibility.Hidden;
+            }
         }
 
         public void Payout(GameResult result)
