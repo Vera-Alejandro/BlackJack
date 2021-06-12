@@ -50,20 +50,5 @@ namespace Blackjack.GamePlay
         {
             HandCards.Add(NewCard);
         }
-
-        public Card GetCard()
-        {
-            foreach (Card card in HandCards)
-            {
-                if (!card.UsedValue)
-                {
-                    card.SetUsedValue(true);
-                    return card;
-                }
-            }
-
-            HandCards[0].SetUsedValue(true);
-            return HandCards[0];
-        }
     }
 }

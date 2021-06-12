@@ -10,7 +10,7 @@ namespace Blackjack.Data
         private string Name { get; set; }
         public CardValue CardValue { get; private set; }
         private SuiteType _suit { get; set; }
-        private bool _beenUsed { get; set; }
+        public bool BeenUsed { get; set; }
 
         public Card(CardValue cardValue, SuiteType suitType)
         {
@@ -30,7 +30,7 @@ namespace Blackjack.Data
 
             CardValue = cardValue;
             _suit = suitType;
-            _beenUsed = false;
+            BeenUsed = false;
 
             pathtoCertCard = @$"{suitType}\{cardValue} of {suitType}.png";
             this._cardImg = Path.Combine(cardImgDir, pathtoCertCard);
@@ -61,11 +61,7 @@ namespace Blackjack.Data
 
         public void SetSuitType(SuiteType Suit) => _suit = Suit;
 
-        public bool UsedValue => _beenUsed;
-
-        public void SetUsedValue(bool SetCase) => _beenUsed = SetCase;
-
-        public SuiteType SuiteType1 => _suit;
+        public void SetUsedValue(bool SetCase) => BeenUsed = SetCase;
 
         public string ImagePath
             => _cardImg;

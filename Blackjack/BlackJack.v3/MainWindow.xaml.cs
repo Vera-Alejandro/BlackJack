@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Media.Imaging;
 using Blackjack.Data;
 using Blackjack.Data.Enums;
@@ -23,6 +24,7 @@ namespace BlackJack.v3
             StartGame();
         }
 
+        #region Window Buttons
         private void ReSizeButton_Click(object sender, RoutedEventArgs e)
             => WindowState = (WindowState == WindowState.Maximized) ? WindowState.Normal : WindowState.Maximized;
 
@@ -31,7 +33,7 @@ namespace BlackJack.v3
 
         private void MinButton_Click(object sender, RoutedEventArgs e)
             => WindowState = WindowState.Minimized;
-
+        #endregion
 
         private void HitButton_Click(object sender, RoutedEventArgs e)
         {
@@ -44,7 +46,7 @@ namespace BlackJack.v3
         {
             GameResult roundResult = CurrentGame.DealersTurn();
 
-            UpdateUserHandTotal(UserType.Dealer);
+            UpdateUserHandTotal(UserType.Dealer, true);
 
             EndGame(roundResult);
         }
@@ -55,19 +57,20 @@ namespace BlackJack.v3
             Output.Text = "A New game has begun.";
         }
 
-        private void DisplayCardImages(UserType user)
+        private void DisplayCardImages(UserType user, bool EndGame = false)
         {
-
-            var cardImgs =  user == UserType.Player ? CurrentGame.GetPlayerCardImages() : CurrentGame.GetDealerCardImages();
+            var cardImgs = user == UserType.Player ? CurrentGame.GetPlayerCardList() : CurrentGame.GetDealerCardList();
             var cardBackImg = CurrentGame.GetCardBackImage();
             var marginRight = 160;
 
-            foreach (var img in cardImgs)
+            foreach (var card in cardImgs)
             {
+                string imgRoute = CurrentGame.ShouldCardsBeDisplayed(user) || EndGame ? card.ImagePath : card.BackImagePath;
+
                 BitmapImage bitmap = new BitmapImage();
 
                 bitmap.BeginInit();
-                bitmap.UriSource = new Uri(@img);
+                bitmap.UriSource = new Uri(imgRoute);
                 bitmap.EndInit();
 
                 Image displayImg = new Image
@@ -115,8 +118,6 @@ namespace BlackJack.v3
             Output.Text = $"Player Bet {cashAmount}";
 
             EnablePlayButtons();
-
-
         }
 
         private void UpdatePlayerCashDisplay()
@@ -124,10 +125,9 @@ namespace BlackJack.v3
             PlayerCash.Text = CurrentGame.GetPlayerCashString();
         }
 
-        private void UpdateUserHandTotal(UserType user)
+        private void UpdateUserHandTotal(UserType user, bool isRoundFinished = false)
         {
-            DisplayCardImages(UserType.Player);
-            DisplayCardImages(UserType.Dealer);
+            DisplayCardImages(user, isRoundFinished);
 
             string total;
 
@@ -135,33 +135,28 @@ namespace BlackJack.v3
             {
                 total = CurrentGame.GetPlayerCardCount();
                 PlayerCount.Text = total;
+
+                if (CurrentGame.HasUserBusted(user))
+                {
+                    EndGame(GameResult.Loss_PlayerBust);
+                }
+
+                if (total == "21")
+                {
+                    EndGame(GameResult.PlayerBlackjack);
+                }
             }
             else
             {
-                total = CurrentGame.GetDealerCardCount();
-                DealerCount.Text = total;
-            }
-
-            if (CurrentGame.HasUserBusted(UserType.Player))
-            {
-                EndGame(GameResult.Loss_PlayerBust);
-            }
-
-            if (total == "21")
-            {
-                GameResult whoWon;
-
-                if (user == UserType.Player)
+                if (isRoundFinished)
                 {
-                    whoWon = GameResult.PlayerBlackjack;
+                    total = CurrentGame.GetDealerCardCount();
+                    DealerCount.Text = total;
                 }
                 else
                 {
-                    whoWon = GameResult.Loss;
+                    DealerCount.Text = "0";
                 }
-
-                EndGame(whoWon);
-
             }
         }
 

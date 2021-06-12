@@ -137,18 +137,42 @@ namespace Blackjack.GamePlay
             }
         }
 
-        public List<string> GetPlayerCardImages()
+        public List<Card> GetPlayerCardList()
         {
-            return player.CurrentHand.HandCards.Select(card => card.ImagePath).ToList();
+            return player.CurrentHand.HandCards.Select(card => card).ToList();
         }
-        public List<string> GetDealerCardImages()
+        public List<Card> GetDealerCardList()
         {
-            return dealer.CurrentHand.HandCards.Select(card => card.ImagePath).ToList();
+            return dealer.CurrentHand.HandCards.Select(card => card).ToList();
         }
 
         public string GetCardBackImage()
         {
             return player.CurrentHand.HandCards.FirstOrDefault()?.BackImagePath;
+        }
+
+        public bool ShouldCardsBeDisplayed(UserType User)
+        {
+            if (User == UserType.Player)
+            {
+                return true;
+            }
+
+            var cardCount = dealer.CurrentHand.HandCards.Count;
+
+            var handValue = dealer.CurrentHand.GetTotal();
+
+            if (dealer.HasDealerBusted())
+            {
+                return true;
+            }
+
+            if (cardCount == 21)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

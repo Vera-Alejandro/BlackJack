@@ -31,19 +31,39 @@ namespace Blackjack.Data
             bool used = true;
             int randCardIndex;
 
+            if (ShouldDeckBeShuffled())
+            {
+                ReshuffleCards();
+            }
+
             do
             {
                 randCardIndex = rand.Next(208);
 
                 returnCard = _cards[randCardIndex];
 
-                used = returnCard.UsedValue;
+                used = returnCard.BeenUsed;
 
             } while (used);
 
             _cards[randCardIndex].SetUsedValue(true);
 
             return returnCard;
+        }
+
+        private void ReshuffleCards()
+        {
+            foreach (var card in _cards)
+            {
+                card.BeenUsed = false;
+            }
+        }
+
+        private bool ShouldDeckBeShuffled()
+        {
+            Random rand = new Random();
+
+            return rand.NextDouble() < .20;
         }
     }
 }
