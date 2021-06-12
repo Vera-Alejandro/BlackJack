@@ -22,5 +22,10 @@ namespace BlackJack.v3.User_Controls
         {
             InitializeComponent();
         }
+
+        private void MenuReturn_OnClick(object Sender, RoutedEventArgs E)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
