@@ -60,14 +60,15 @@
                 <TextBlock x:Name="PlayerCash" Foreground="White" Text="500" FontSize="18" />
             </InlineUIContainer></TextBlock>
 
-            <Grid>
-                <Image x:Name="DisplayImg1"/>
-                <Image x:Name="DisplayImg2"/>
-                <Image x:Name="DisplayImg3"/>
-                <Image x:Name="DisplayImg4"/>
-                <Image x:Name="DisplayImg5"/>
-                <Image x:Name="DisplayImg6"/>
-                <Image x:Name="DisplayImg7"/>
+            <Grid x:Name="CardContainer" Height="475">
+
+                <!--<Image x:Name="DisplayImg1" Source="/Ace of Clubs.png" Height="240" Margin="0 90 160 0"/>
+                <Image x:Name="DisplayImg2" Source="/Ace of Clubs.png" Height="240" Margin="0 90 110 0"/>
+                <Image x:Name="DisplayImg3" Source="/Ace of Clubs.png" Height="240" Margin="0 90 60 0"/>
+                <Image x:Name="DisplayImg4" Source="/Ace of Clubs.png" Height="240" Margin="0 90 10 0"/>
+                <Image x:Name="DisplayImg5" Source="/Ace of Clubs.png" Height="240" Margin="0 90 -40 0"/>
+                <Image x:Name="DisplayImg6" Source="/Ace of Clubs.png" Height="240" Margin="0 90 -90 0"/>
+                <Image x:Name="DisplayImg7" Source="/Ace of Clubs.png" Height="240" Margin="0 90 -140 0"/>-->
             </Grid>
 
         </StackPanel>
