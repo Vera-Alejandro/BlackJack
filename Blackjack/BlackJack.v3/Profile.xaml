@@ -9,17 +9,6 @@
         ResizeMode="NoResize">
     <Border BorderBrush="White" BorderThickness="2">
         <Grid Background="Black" >
-            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 125 0 0 " Orientation="Horizontal">
-                <Label Content="Currently Logged in as:" Foreground="White" FontSize="15"/>
-                <Label Content="Guest" Foreground="White" FontSize="15"/>
-            </StackPanel>
-
-            <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 250 0 0 " Height="110" Width="210">
-                <Button x:Name="LogIn" Height="50" Width="100" Foreground="White" Background="Black" Content="Log In" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Click="LogIn_OnClick"/>
-                <Button x:Name="SignUp" Height="50" Width="100" Foreground="White" Background="Black" Content="Sign Up" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Top" Click="SignUp_OnClick"/>
-                <Button x:Name="AddFunds" Height="50" Width="100" Foreground="White" Background="Black" Content="Funds" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="AddFunds_OnClick"/>
-                <Button x:Name="Info" Height="50" Width="100" Foreground="White" Background="Black" Content="Info" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="Info_OnClick"/>
-            </Grid>
         </Grid>
     </Border>
 </Window>

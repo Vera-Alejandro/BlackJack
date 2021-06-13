@@ -25,6 +25,11 @@ namespace BlackJack.v3.User_Controls
 
         private void MenuReturn_OnClick(object Sender, RoutedEventArgs E)
         {
+            this.Content = new MainMenu();
+        }
+
+        private void LogInUser_OnClick(object Sender, RoutedEventArgs E)
+        {
             throw new NotImplementedException();
         }
     }

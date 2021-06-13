@@ -30,7 +30,7 @@
 
             <Grid VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 0 50" Width="225" Height="75">
                 <Button x:Name="MenuReturn" Content="Menu" Foreground="White" Background="Black" Height="50" Width="100" HorizontalAlignment="Left" Click="MenuReturn_OnClick"/>
-                <Button x:Name="SignUpUser" Content="Sign Up" Foreground="White" Background="Black" Height="50" Width="100" HorizontalAlignment="Right"/>
+                <Button x:Name="SignUpUser" Content="Sign Up" Foreground="White" Background="Black" Height="50" Width="100" HorizontalAlignment="Right" Click="SignUpUser_OnClick"/>
             </Grid>
         </Grid>
     </Border>

@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="BlackJack.v3.User_Controls.Info"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BlackJack.v3.User_Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="300">
+    <Border BorderBrush="White" BorderThickness="2">
+        <Grid Background="Black" >
+            <Label Content="Profile Info" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="25" Margin="0 30 0 0"/>
+
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 150 0 0 " Orientation="Horizontal">
+                <Label Content="Username:" Foreground="White" FontSize="15"/>
+                <Label Content="Guest" Foreground="White" FontSize="15"/>
+            </StackPanel>
+            
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 200 0 0 " Orientation="Horizontal">
+                <Label Content="Email:" Foreground="White" FontSize="15"/>
+                <Label Content="Guest" Foreground="White" FontSize="15"/>
+            </StackPanel>            
+            
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 250 0 0 " Orientation="Horizontal">
+                <Label Content="Funds:" Foreground="White" FontSize="15"/>
+                <Label Content="$100" Foreground="White" FontSize="15"/>
+            </StackPanel>            
+
+
+            
+            <Grid VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 0 50" Width="225" Height="75">
+                <Button x:Name="MenuReturn" Content="Menu" Foreground="White" Background="Black" Height="50" Width="100" HorizontalAlignment="Left" Click="MenuReturn_OnClick"/>
+                <Button x:Name="UpdateInfo" Content="Update Info" Foreground="White" Background="Black" Height="50" Width="100" HorizontalAlignment="Right" Click="UpdateInfo_OnClick"/>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
