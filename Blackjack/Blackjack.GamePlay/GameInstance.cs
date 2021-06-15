@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Blackjack.GamePlay
 {
-    public class GameInstance
+    public partial class GameInstance
     {
         private Player player { get; set; }
         private Dealer dealer { get; set; }

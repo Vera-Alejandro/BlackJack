@@ -14,7 +14,7 @@ namespace BlackJack.v3
     /// </summary>
     public partial class MainWindow : Window
     {
-        protected GameInstance CurrentGame;
+        public GameInstance CurrentGame { get; set; } 
 
         public MainWindow()
         {

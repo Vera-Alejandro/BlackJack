@@ -1,6 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
 using Blackjack.Data;
+using Blackjack.GamePlay;
 
 namespace BlackJack.v3.User_Controls
 {
@@ -21,17 +24,33 @@ namespace BlackJack.v3.User_Controls
 
         private void SignUpUser_OnClick(object Sender, RoutedEventArgs E)
         {
+            GameInstance game = ((MainWindow)Application.Current.MainWindow).CurrentGame;
 
-            using (var context = new BlackjackContext())
+            if (game.IfPlayerExists(Username.Text))
             {
-                context.UserProfile.Add(new UserProfile
+                // TODO: Create an error message and say that user already exists and cannot be created again
+                return;
+            }
+
+            if (Password.Text != RetypePassword.Text)
+            {
+                // TODO: Create an error message and tell them that the passwords do not match
+                return;
+            }
+
+            try
+            {
+                game.SignUpPlayer(new UserProfile
                 {
                     Name = Name.Text,
                     Username = Username.Text,
                     Password = Password.Text
                 });
-
-                context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                // TODO: There was an error when trying to signup the user
             }
         }
     }
