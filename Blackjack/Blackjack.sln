@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blackjack.Data", "Blackjack
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreGameTesting", "CoreGameTesting\CoreGameTesting.csproj", "{5422072A-06C4-4E08-87C8-3C8A156512D0}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Blackjack.Database", "Blackjack.Database\Blackjack.Database.sqlproj", "{A84A417E-6B74-4A93-93BC-013ABA50D12A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,12 +33,6 @@ Global
 		{5422072A-06C4-4E08-87C8-3C8A156512D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5422072A-06C4-4E08-87C8-3C8A156512D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5422072A-06C4-4E08-87C8-3C8A156512D0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A84A417E-6B74-4A93-93BC-013ABA50D12A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A84A417E-6B74-4A93-93BC-013ABA50D12A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A84A417E-6B74-4A93-93BC-013ABA50D12A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{A84A417E-6B74-4A93-93BC-013ABA50D12A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A84A417E-6B74-4A93-93BC-013ABA50D12A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A84A417E-6B74-4A93-93BC-013ABA50D12A}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
