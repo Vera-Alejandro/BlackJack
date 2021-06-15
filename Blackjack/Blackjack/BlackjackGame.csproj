@@ -317,12 +317,6 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SQLite.DataBase\Storage.csproj">
-      <Project>{D7CD3057-8550-4106-AB62-08676392D622}</Project>
-      <Name>Storage</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

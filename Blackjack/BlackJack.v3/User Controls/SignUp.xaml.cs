@@ -1,6 +1,6 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
+using Blackjack.Data;
 
 namespace BlackJack.v3.User_Controls
 {
@@ -22,8 +22,17 @@ namespace BlackJack.v3.User_Controls
         private void SignUpUser_OnClick(object Sender, RoutedEventArgs E)
         {
 
+            using (var context = new BlackjackContext())
+            {
+                context.UserProfile.Add(new UserProfile
+                {
+                    Name = Name.Text,
+                    Username = Username.Text,
+                    Password = Password.Text
+                });
 
-            throw new NotImplementedException();
+                context.SaveChanges();
+            }
         }
     }
 }

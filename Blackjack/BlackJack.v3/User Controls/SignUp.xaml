@@ -11,12 +11,12 @@
             <Label Content="Sign Up" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="25" Margin="0 30 0 0"></Label>
            
             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 100 0 0" Orientation="Horizontal" Width="225">
-                <Label Content="Username" Foreground="White" VerticalAlignment="Center" Width="65" HorizontalContentAlignment="Right"/>
-                <TextBox x:Name="Username" Width="150" Margin="10 0 0 0"/>
+                <Label Content="Name" Foreground="White" VerticalAlignment="Center" Width="65" HorizontalContentAlignment="Right"/>
+                <TextBox x:Name="Name" Width="150" Margin="10 0 0 0"/>
             </StackPanel>
             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0 150 0 0" Width="225">
-                <Label Content="Email" Foreground="White" VerticalAlignment="Center" Width="65" HorizontalContentAlignment="Right"/>
-                <TextBox x:Name="Email" Width="150" Margin="10 0 0 0"/>
+                <Label Content="Username" Foreground="White" VerticalAlignment="Center" Width="65" HorizontalContentAlignment="Right"/>
+                <TextBox x:Name="Username" Width="150" Margin="10 0 0 0"/>
             </StackPanel>            
             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0 200 0 0" Width="225">
                 <Label Content="Password" Foreground="White" VerticalAlignment="Center" Width="65" HorizontalContentAlignment="Right"/>
