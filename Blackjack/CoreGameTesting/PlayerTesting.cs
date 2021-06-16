@@ -48,6 +48,29 @@ namespace CoreGameTesting
         }
 
         [Test]
+        public void CollectWinnings_Pay400_Cash900()
+        {
+            float bet = 400.00f;
+
+            testPlayer.PlaceBet(bet);
+
+            testPlayer.CollectWinnings(bet);
+
+            Assert.AreEqual(900.00f, testPlayer.Cash);
+        }
+
+        [Test]
+        public void CollectWinnings_NullPayment_ThrowExc()
+        {
+            Assert.Throws<ArgumentNullException>(() => testPlayer.CollectWinnings(null));
+
+            float bet = 100.00f;
+
+            testPlayer.PlaceBet(bet);
+            Assert.Throws<ArgumentNullException>(() => testPlayer.CollectWinnings(null));
+        }
+
+        [Test]
         public void PlaceBet_Bet500ThenBet100_ThrowsInsignificantFundsException()
         {
             float bet = 500.00f;
