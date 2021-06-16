@@ -20,9 +20,9 @@ namespace Blackjack.GamePlay
             deck = new Deck();
         }
 
-        public bool SetBetAmount(float betAmount)
+        public void BetIfPossible(float betAmount)
         {
-            return player.PlaceBet(betAmount);
+            player.PlaceBet(betAmount);
         }
 
         public float GetPlayerCash()
