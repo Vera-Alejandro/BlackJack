@@ -51,7 +51,7 @@ namespace Blackjack.Data
             return returnCard;
         }
 
-        private void ReshuffleCards()
+        public void ReshuffleCards()
         {
             foreach (var card in _cards)
             {

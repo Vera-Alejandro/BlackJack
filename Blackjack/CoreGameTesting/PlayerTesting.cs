@@ -1,5 +1,4 @@
 ﻿using System;
-using Blackjack.Data.Enums;
 using Blackjack.GamePlay;
 using Blackjack.GamePlay.Exceptions;
 using NUnit.Framework;
@@ -8,14 +7,12 @@ namespace CoreGameTesting
 {
     public class PlayerTests
     {
-        public GameInstance testGame { get; set; }
-        public Player testPlayer { get; set; }
+        public Player TestPlayer { get; set; }
 
         [SetUp]
         public void SetUp()
         {
-            testGame = new GameInstance();
-            testPlayer = new Player();
+            TestPlayer = new Player();
         }
 
         [Test]
@@ -23,9 +20,9 @@ namespace CoreGameTesting
         {
             float bet = 250.00f;
 
-            testPlayer.PlaceBet(bet);
+            TestPlayer.PlaceBet(bet);
 
-            Assert.AreEqual(250.00f, testPlayer.Cash);
+            Assert.AreEqual(250.00f, TestPlayer.Cash);
         }
 
         [Test]
@@ -33,10 +30,10 @@ namespace CoreGameTesting
         {
             float bet = 400.00f;
 
-            testPlayer.PlaceBet(bet);
+            TestPlayer.PlaceBet(bet);
 
-            Assert.AreEqual(100.00f, testPlayer.Cash);
-            Assert.AreEqual(bet, testPlayer.CurrentBet);
+            Assert.AreEqual(100.00f, TestPlayer.Cash);
+            Assert.AreEqual(bet, TestPlayer.CurrentBet);
         }
 
         [Test]
@@ -44,7 +41,7 @@ namespace CoreGameTesting
         {
             float bet = 1000.00f;
           
-            Assert.Throws<BetTooLargeToPlaceBetException>(() => testPlayer.PlaceBet(bet));
+            Assert.Throws<BetTooLargeToPlaceBetException>(() => TestPlayer.PlaceBet(bet));
         }
 
         [Test]
@@ -52,22 +49,22 @@ namespace CoreGameTesting
         {
             float bet = 400.00f;
 
-            testPlayer.PlaceBet(bet);
+            TestPlayer.PlaceBet(bet);
 
-            testPlayer.CollectWinnings(bet);
+            TestPlayer.CollectWinnings(bet);
 
-            Assert.AreEqual(900.00f, testPlayer.Cash);
+            Assert.AreEqual(900.00f, TestPlayer.Cash);
         }
 
         [Test]
         public void CollectWinnings_NullPayment_ThrowExc()
         {
-            Assert.Throws<ArgumentNullException>(() => testPlayer.CollectWinnings(null));
+            Assert.Throws<ArgumentNullException>(() => TestPlayer.CollectWinnings(null));
 
             float bet = 100.00f;
 
-            testPlayer.PlaceBet(bet);
-            Assert.Throws<ArgumentNullException>(() => testPlayer.CollectWinnings(null));
+            TestPlayer.PlaceBet(bet);
+            Assert.Throws<ArgumentNullException>(() => TestPlayer.CollectWinnings(null));
         }
 
         [Test]
@@ -75,36 +72,11 @@ namespace CoreGameTesting
         {
             float bet = 500.00f;
 
-            testPlayer.PlaceBet(bet);
+            TestPlayer.PlaceBet(bet);
 
             bet = 100.00f;
 
-            Assert.Throws<InsignificantFundsException>(() => testPlayer.PlaceBet(bet));
+            Assert.Throws<InsignificantFundsException>(() => TestPlayer.PlaceBet(bet));
         }
-
-        [Test]
-        public void Win_Endgame_Payout_Success()
-        {
-            testGame.BetIfPossible(100f);
-
-            testGame.Payout(GameResult.Win);
-
-            var playerCurrentCash = testGame.GetPlayerCash();
-
-            Assert.AreEqual(600f, playerCurrentCash);
-        }
-
-        [Test]
-        public void BlackJackWin_Endgame_Payout()
-        {
-            testGame.BetIfPossible(100f);
-
-            testGame.Payout(GameResult.PlayerBlackjack);
-
-            var playerCurrentCash = testGame.GetPlayerCash();
-
-            Assert.AreEqual(650f, playerCurrentCash);
-        }
-
     }
 }

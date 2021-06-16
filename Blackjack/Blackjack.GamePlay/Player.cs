@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Blackjack.Data;
 using Blackjack.GamePlay.Exceptions;
 
 namespace Blackjack.GamePlay
 {
-    public class Player
+    public class Player : IUser
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public Hand CurrentHand { get; set; }
+        private Hand CurrentHand { get; set; }
         public float Cash { get; set; } 
         public float? CurrentBet { get; set; }
 
@@ -62,5 +65,26 @@ namespace Blackjack.GamePlay
 
             Cash += (float)CurrentBet + (float)PayoutAmt;
         }
+
+        public int GetHandTotal()
+        {
+            return CurrentHand.GetTotal();
+        }
+
+        public List<Card> GetHandList()
+        {
+            return CurrentHand.HandCards;
+        }
+
+        public int GetHandCount()
+        {
+            return CurrentHand.HandCards.Count;
+        }
+
+        public void AddCardToHand(Card NewCard)
+        {
+            CurrentHand.AddCard(NewCard);
+        }
     }
+
 }
