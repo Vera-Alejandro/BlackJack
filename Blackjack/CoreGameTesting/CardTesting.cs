@@ -43,7 +43,6 @@ namespace CoreGameTesting
             Assert.AreEqual(10, jackCardValue);
         }
 
-        [Test]
         public void PathToCard_Successfull()
         {
             Card aceOfHearts = new Card(CardValue.Ace, SuiteType.Hearts);
