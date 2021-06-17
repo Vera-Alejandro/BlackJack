@@ -11,26 +11,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BlackJack.v3.User_Controls
+namespace BlackJack.v3.Pages
 {
     /// <summary>
-    /// Interaction logic for AddFunds.xaml
+    /// Interaction logic for MainMenu.xaml
     /// </summary>
-    public partial class AddFunds : UserControl
+    public partial class MainMenu : Page
     {
-        public AddFunds()
+        public MainMenu()
         {
             InitializeComponent();
-        }
-
-        private void MenuReturn_OnClick(object Sender, RoutedEventArgs E)
-        {
-            this.Content = new MainMenu();
-        }
-
-        private void AddFundsToAccount_OnClick(object Sender, RoutedEventArgs E)
-        {
-            throw new NotImplementedException();
         }
     }
 }
