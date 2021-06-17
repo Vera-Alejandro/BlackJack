@@ -6,6 +6,7 @@ using System.Windows.Data;
 using System.Windows.Media.Imaging;
 using Blackjack.Data;
 using Blackjack.Data.Enums;
+using Blackjack.GamePlay.Exceptions;
 
 namespace BlackJack.v3
 {
@@ -96,9 +97,13 @@ namespace BlackJack.v3
 
             var cashAmount = amount == "BetAll" ? CurrentGame.GetPlayerCash() : float.Parse(amount);
 
-            if (!CurrentGame.SetBetAmount(cashAmount))
+            try
             {
-                Output.Text = "Player does not have enough cash to place a bet.";
+                CurrentGame.BetIfPossible(cashAmount);
+            }
+            catch (Exception exception)
+            {
+                Output.Text = exception.Message;
                 return;
             }
 
@@ -260,7 +265,6 @@ namespace BlackJack.v3
 
         private void OpenProfile_OnClick(object Sender, RoutedEventArgs E)
         {
-            Profil
         }
     }
 }

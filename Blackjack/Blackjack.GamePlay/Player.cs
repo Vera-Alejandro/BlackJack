@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Blackjack.Data;
+using Blackjack.GamePlay.Exceptions;
 
 namespace Blackjack.GamePlay
 {
-    public class Player
+    public class Player : IUser
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public Hand CurrentHand { get; set; }
+        private Hand CurrentHand { get; set; }
         public float Cash { get; set; } 
         public float? CurrentBet { get; set; }
 
@@ -23,16 +27,27 @@ namespace Blackjack.GamePlay
             return CurrentHand.HasBusted();
         }
 
-        public bool PlaceBet(float BetAmount)
+        public void PlaceBet(float BetAmount)
         {
             if (Cash > 0 && BetAmount <= Cash)
             {
                 CurrentBet = BetAmount;
                 Cash = Cash - BetAmount;
-                return true;
             }
+            else
+            {
+                if (Cash <= 0)
+                {
+                    throw new InsignificantFundsException($"User does not have enough cash. ${Cash}");
+                }
+                else if (BetAmount > Cash)
+                {
+                    throw new BetTooLargeToPlaceBetException(
+                        $"Cannot place Bet. Player does not have enough Cash. Cash: ${Cash} Bet Amount: ${BetAmount}");
+                }
 
-            return false;
+                throw new Exception("An issue happened");
+            }
         }
 
         public void ResetRound()
@@ -50,5 +65,26 @@ namespace Blackjack.GamePlay
 
             Cash += (float)CurrentBet + (float)PayoutAmt;
         }
+
+        public int GetHandTotal()
+        {
+            return CurrentHand.GetTotal();
+        }
+
+        public List<Card> GetHandList()
+        {
+            return CurrentHand.HandCards;
+        }
+
+        public int GetHandCount()
+        {
+            return CurrentHand.HandCards.Count;
+        }
+
+        public void AddCardToHand(Card NewCard)
+        {
+            CurrentHand.AddCard(NewCard);
+        }
     }
+
 }

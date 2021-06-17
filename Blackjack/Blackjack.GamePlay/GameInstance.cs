@@ -20,9 +20,9 @@ namespace Blackjack.GamePlay
             deck = new Deck();
         }
 
-        public bool SetBetAmount(float betAmount)
+        public void BetIfPossible(float betAmount)
         {
-            return player.PlaceBet(betAmount);
+            player.PlaceBet(betAmount);
         }
 
         public float GetPlayerCash()
@@ -61,11 +61,11 @@ namespace Blackjack.GamePlay
         {
             if (user == UserType.Player)
             {
-                player.CurrentHand.AddCard(deck.GetCard());
+                player.AddCardToHand(deck.GetCard());
             }
             else
             {
-                dealer.CurrentHand.AddCard(deck.GetCard());
+                dealer.AddCardToHand(deck.GetCard());
             }
         }
 
@@ -80,12 +80,12 @@ namespace Blackjack.GamePlay
 
         public string GetPlayerCardCount()
         {
-            return player.CurrentHand.GetTotal().ToString();
+            return player.GetHandTotal().ToString();
         }
 
         public string GetDealerCardCount()
         {
-            return dealer.CurrentHand.GetTotal().ToString();
+            return dealer.GetHandTotal().ToString();
         }
 
         public void NextRound()
@@ -97,12 +97,12 @@ namespace Blackjack.GamePlay
 
         public GameResult DealersTurn()
         {
-            while (dealer.CurrentHand.GetTotal() < 17)
+            while (dealer.GetHandTotal() < dealer.MinHandTotal)
             {
                 HitUser(UserType.Dealer);
             }
 
-            if (dealer.CurrentHand.GetTotal() == player.CurrentHand.GetTotal())
+            if (dealer.GetHandTotal() == player.GetHandTotal())
             {
                 return GameResult.Standoff;
             }
@@ -112,7 +112,7 @@ namespace Blackjack.GamePlay
                 return GameResult.Win;
             }
 
-            if (dealer.CurrentHand.GetTotal() > player.CurrentHand.GetTotal())
+            if (dealer.GetHandTotal() > player.GetHandTotal())
             {
                 return GameResult.Loss;
             }
@@ -139,16 +139,16 @@ namespace Blackjack.GamePlay
 
         public List<Card> GetPlayerCardList()
         {
-            return player.CurrentHand.HandCards.Select(card => card).ToList();
+            return player.GetHandList();
         }
         public List<Card> GetDealerCardList()
         {
-            return dealer.CurrentHand.HandCards.Select(card => card).ToList();
+            return dealer.GetHandList();
         }
 
         public string GetCardBackImage()
         {
-            return player.CurrentHand.HandCards.FirstOrDefault()?.BackImagePath;
+            return player.GetHandList().FirstOrDefault()?.BackImagePath;
         }
 
         public bool ShouldCardsBeDisplayed(UserType User)
@@ -158,9 +158,9 @@ namespace Blackjack.GamePlay
                 return true;
             }
 
-            var cardCount = dealer.CurrentHand.HandCards.Count;
+            var cardCount = dealer.GetHandCount();
 
-            var handValue = dealer.CurrentHand.GetTotal();
+            var handValue = dealer.GetHandCount();
 
             if (dealer.HasDealerBusted())
             {
