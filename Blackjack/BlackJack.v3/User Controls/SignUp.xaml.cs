@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using Blackjack.Data;
+using Blackjack.Data.Entities;
 using Blackjack.GamePlay;
 
 namespace BlackJack.v3.User_Controls
@@ -17,9 +13,12 @@ namespace BlackJack.v3.User_Controls
     /// </summary>
     public partial class SignUp : UserControl
     {
+        private readonly ProfileInteractions _profileController;
         public SignUp()
         {
             InitializeComponent();
+            //TODO: we should DI this 
+            _profileController = new ProfileInteractions();
         }
 
         private void MenuReturn_OnClick(object Sender, RoutedEventArgs E)
@@ -29,44 +28,72 @@ namespace BlackJack.v3.User_Controls
 
         private async void SignUpUser_OnClick(object Sender, RoutedEventArgs E)
         {
-            GameInstance game = ((MainWindow)Application.Current.MainWindow).CurrentGame;
-
-            if (game.IfPlayerExists(Username.Text))
-            {
-                SignUpOutput.Content = "Player already exists. Please use another name";
-                return;
-            }
-
-            if (Password.Text != RetypePassword.Text)
-            {
-                SignUpOutput.Content = "Passwords do not match! Please try again.";
-                return;
-            }
+            if (!ValidateInputs()) return;
 
             try
             {
-                await game.SignUpPlayer(new UserProfile
+                await _profileController.SignUpPlayer(new UserProfile
                 {
-                    Name = Name.Text,
+                    PlayerName = Name.Text,
                     Username = Username.Text,
                     Password = Password.Text
                 });
 
                 SignUpOutput.Foreground = new SolidColorBrush(Colors.Green);
-                SignUpOutput.Content = $"{Username} has been successfully inserted!";
+                SignUpOutput.Content = $"{Username.Text} has been successfully inserted!";
             }
             catch (Exception e)
             {
-                if (e.Message == "Player returned with an invalid ID")
-                {
-                    SignUpOutput.Content = "There was an issue with saving to the db. Please try again later.";
-                }
-                else
-                {
-                    SignUpOutput.Content = "An Error occurred. Please try again later.";
-                }
+                SignUpOutput.Foreground = new SolidColorBrush(Colors.Red);
+                SignUpOutput.Content = "An Error occurred. Please try again later.";
+                
                 Debug.WriteLine(e);
             }
+        }
+
+        private bool ValidateInputs()
+        {
+            SignUpOutput.Foreground = new SolidColorBrush(Colors.Red);
+
+            if (string.IsNullOrEmpty(Name.Text))
+            {
+                SignUpOutput.Content = "Please enter your name";
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(Username.Text))
+            {
+                SignUpOutput.Content = "Please enter a Username.";
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(Password.Text))
+            {
+                SignUpOutput.Content = "Please enter a password";
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(RetypePassword.Text))
+            {
+                SignUpOutput.Content = "Please re-enter your password";
+                return false;
+            }
+
+            if (_profileController.PlayerExists(Username.Text))
+            {
+                SignUpOutput.Content = "Player already exists. Please use another name";
+                return false;
+            }
+
+            if (Password.Text != RetypePassword.Text)
+            {
+                SignUpOutput.Content = "Passwords do not match! Please try again.";
+                return false;
+            }
+
+            SignUpOutput.Foreground = new SolidColorBrush(Colors.WhiteSmoke);
+
+            return true;
         }
     }
 }

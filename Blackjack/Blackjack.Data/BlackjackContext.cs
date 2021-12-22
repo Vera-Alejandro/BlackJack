@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Blackjack.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blackjack.Data
 {
@@ -9,7 +10,7 @@ namespace Blackjack.Data
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlServer(
-                "Data Source=(localdb)\\ProjectsV13;Initial Catalog=Blackjack.Database;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                @"Data Source=(localdb)\ProjectsV13;Initial Catalog=Players;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             base.OnConfiguring(options);
         }
 
@@ -18,7 +19,12 @@ namespace Blackjack.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<UserProfile>()
-                .ToTable("UserProfile", "ACT");
+                .ToTable("ProfileInfo")
+                .HasKey("PlayerId");
+
+            modelBuilder.Entity<UserProfile>()
+                .Property("PlayerId")
+                .ValueGeneratedOnAdd();
         }
     }
 }

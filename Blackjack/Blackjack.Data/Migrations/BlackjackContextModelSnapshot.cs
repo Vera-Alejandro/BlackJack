@@ -20,12 +20,12 @@ namespace Blackjack.Data.Migrations
 
             modelBuilder.Entity("Blackjack.Data.UserProfile", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("PlayerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("PlayerName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
@@ -34,7 +34,7 @@ namespace Blackjack.Data.Migrations
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("PlayerId");
 
                     b.ToTable("UserProfile", "ACT");
                 });

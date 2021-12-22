@@ -14,7 +14,7 @@ namespace BlackJack.v3
     /// </summary>
     public partial class MainWindow : Window
     {
-        public GameInstance CurrentGame { get; set; } 
+        public GameInstance CurrentGame { get; set; }
 
         public MainWindow()
         {
@@ -58,12 +58,13 @@ namespace BlackJack.v3
         private void DisplayCardImages(UserType user, bool EndGame = false)
         {
             var cardImgs = user == UserType.Player ? CurrentGame.GetPlayerCardList() : CurrentGame.GetDealerCardList();
-            var cardBackImg = CurrentGame.GetCardBackImage();
             var marginRight = 160;
 
             foreach (var card in cardImgs)
             {
-                string imgRoute = CurrentGame.ShouldCardsBeDisplayed(user) || EndGame ? card.ImagePath : card.BackImagePath;
+                string imgRoute = CurrentGame.ShouldCardsBeDisplayed(user) || EndGame 
+                    ? card.ImagePath 
+                    : card.BackImagePath;
 
                 BitmapImage bitmap = new BitmapImage();
 
@@ -82,11 +83,13 @@ namespace BlackJack.v3
                     Visibility = Visibility.Visible
                 };
 
-                _ = user == UserType.Player ? PlayerCardContainer.Children.Add(displayImg) : DealerCardContainer.Children.Add(displayImg);
+                _ = user == UserType.Player
+                    ? PlayerCardContainer.Children.Add(displayImg)
+                    : DealerCardContainer.Children.Add(displayImg);
+
                 marginRight -= 75;
             }
         }
-
 
         private void PlaceBet(object sender, RoutedEventArgs e)
         {

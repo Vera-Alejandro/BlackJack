@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="Profile" Height="450" Width="300"
         ResizeMode="NoResize">
-    <Border BorderBrush="White" BorderThickness="2">
-        <Grid Background="Black" >
+    <Border x:Name="ProfileView" BorderBrush="White" BorderThickness="2">
+        <Grid Background="Black">
         </Grid>
     </Border>
 </Window>
