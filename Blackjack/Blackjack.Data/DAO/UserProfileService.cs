@@ -34,7 +34,7 @@ namespace Blackjack.Data.DAO
             //TODO: this could be more secure, but this will work for now
             var playerProfile = await _context.UserProfile.SingleAsync(u => u.Username == UserProfile.Username);
 
-            if (playerProfile.Password == UserProfile.Password)
+            if (playerProfile.Password != UserProfile.Password)
                 throw new InvalidPasswordException();
 
             return playerProfile;

@@ -35,12 +35,14 @@ namespace BlackJack.v3.User_Controls
                 await _profileController.SignUpPlayer(new UserProfile
                 {
                     PlayerName = Name.Text,
-                    Username = Username.Text,
+                    Username = Username.Text.ToLower(),
                     Password = Password.Text
                 });
 
                 SignUpOutput.Foreground = new SolidColorBrush(Colors.Green);
                 SignUpOutput.Content = $"{Username.Text} has been successfully inserted!";
+
+                ClearInput();
             }
             catch (Exception e)
             {
@@ -49,6 +51,14 @@ namespace BlackJack.v3.User_Controls
                 
                 Debug.WriteLine(e);
             }
+        }
+
+        private void ClearInput()
+        {
+            Name.Text = string.Empty;
+            Username.Text = string.Empty;
+            Password.Text = string.Empty;
+            RetypePassword.Text = string.Empty;
         }
 
         private bool ValidateInputs()

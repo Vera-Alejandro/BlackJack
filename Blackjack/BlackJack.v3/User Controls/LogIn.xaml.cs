@@ -37,12 +37,14 @@ namespace BlackJack.v3.User_Controls
             {
                 var player = new UserProfile
                 {
-                    Username = Username.Text,
+                    Username = Username.Text.ToLower(),
                     Password = Password.Text
                 };
 
                 LoggedInUser = await _profileController.LogInPlayer(player);
-                
+
+                ClearInputs();
+
             }
             catch (FailedLoginException)
             {
@@ -54,6 +56,12 @@ namespace BlackJack.v3.User_Controls
                LogInOutput.Foreground = new SolidColorBrush(Colors.Red);
                 LogInOutput.Content = "There was an issue logging you in.";
             }
+        }
+
+        private void ClearInputs()
+        {
+            Username.Text = string.Empty;
+            Password.Text = string.Empty;
         }
 
         private bool ValidateInputs()
