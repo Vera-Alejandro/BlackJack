@@ -21,7 +21,7 @@ jobs:
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
-      Solution_Name: Blackjack\Blackjack.sln
+      Solution_Name: Blackjack.sln
       Test_Project_Path: CoreGameTesting\CoreGameTesting.csproj
 
     steps:
