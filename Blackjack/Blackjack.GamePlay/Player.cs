@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Blackjack.Data;
+﻿using Blackjack.Data;
 using Blackjack.GamePlay.Exceptions;
+using System;
+using System.Collections.Generic;
 
 namespace Blackjack.GamePlay
 {
@@ -11,7 +10,7 @@ namespace Blackjack.GamePlay
         public int Id { get; set; }
         public string Name { get; set; }
         private Hand CurrentHand { get; set; }
-        public float Cash { get; set; } 
+        public float Cash { get; set; }
         public float? CurrentBet { get; set; }
 
 

@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using Blackjack.Data;
-using Blackjack.Data.Enums;
+﻿using Blackjack.Data;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace CoreGameTesting
 {
