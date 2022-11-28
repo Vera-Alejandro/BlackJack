@@ -42,16 +42,8 @@ jobs:
       working-directory: ./Blackjack
       run: dotnet test
 
-    # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
       working-directory: ./Blackjack
       run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
       env:
         Configuration: ${{ matrix.configuration }}
-
-    - name: Build application
-      working-directory: ./Blackjack
-      run: msbuild $env:Solution_Name p:Configuration=$env:Configuration 
-      env:
-        Configuration: ${{ matrix.configuration }}
-        
