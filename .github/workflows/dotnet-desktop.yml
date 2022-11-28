@@ -51,7 +51,7 @@ jobs:
 
     - name: Build application
       working-directory: ./Blackjack
-      run: msbuild p:Configuration=$env:Configuration 
+      run: msbuild $env:Solution_Name p:Configuration=$env:Configuration 
       env:
         Configuration: ${{ matrix.configuration }}
         
