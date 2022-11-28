@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29230.47
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackjackGame", "Blackjack\BlackjackGame.csproj", "{2320C7DE-5FF6-4F67-9453-D8E3FD93A2FE}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blackjack.Data", "Blackjack.Data\Blackjack.Data.csproj", "{3E7C0400-B091-4C78-A076-BFA2F82768EE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreGameTesting", "CoreGameTesting\CoreGameTesting.csproj", "{5422072A-06C4-4E08-87C8-3C8A156512D0}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "KeeperOfTheHouse", "KeeperOfTheHouse\KeeperOfTheHouse.sqlproj", "{C448FB0C-F51D-4356-8D0E-7715A0BC7032}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,12 @@ Global
 		{5422072A-06C4-4E08-87C8-3C8A156512D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5422072A-06C4-4E08-87C8-3C8A156512D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5422072A-06C4-4E08-87C8-3C8A156512D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C448FB0C-F51D-4356-8D0E-7715A0BC7032}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C448FB0C-F51D-4356-8D0E-7715A0BC7032}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C448FB0C-F51D-4356-8D0E-7715A0BC7032}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C448FB0C-F51D-4356-8D0E-7715A0BC7032}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C448FB0C-F51D-4356-8D0E-7715A0BC7032}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C448FB0C-F51D-4356-8D0E-7715A0BC7032}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -83,7 +83,10 @@ namespace BlackJack.v3
                     Visibility = Visibility.Visible
                 };
 
-                _ = user == UserType.Player ? PlayerCardContainer.Children.Add(displayImg) : DealerCardContainer.Children.Add(displayImg);
+                _ = user == UserType.Player 
+                    ? PlayerCardContainer.Children.Add(displayImg) 
+                    : DealerCardContainer.Children.Add(displayImg);
+                
                 marginRight -= 75;
             }
         }
@@ -265,6 +268,8 @@ namespace BlackJack.v3
 
         private void OpenProfile_OnClick(object Sender, RoutedEventArgs E)
         {
+            Profile profile = new Profile();
+            profile.Show();
         }
     }
 }

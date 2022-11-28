@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BlackJack.v3"
         mc:Ignorable="d"
-        Title="Profile" Height="450" Width="800">
-    <Grid>
-        
+        Title="Profile" Height="400" Width="300" BorderBrush="White">
+    <Grid Background="Black">
+        <Label Content="WELCOME" Height="40" Width="125" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 30 0 0" Foreground="White" HorizontalContentAlignment="Center"/>
     </Grid>
 </Window>
