@@ -22,7 +22,7 @@ jobs:
 
     env:
       Project_Name: .\Blackjack\BlackJack.v3\BlackJack.v3.csproj
-      Test_Project_Path: CoreGameTesting\CoreGameTesting.csproj
+      Test_Project_Path: .\Blackjack\CoreGameTesting\CoreGameTesting.csproj
 
     steps:
     - name: Checkout
@@ -36,8 +36,7 @@ jobs:
         dotnet-version: 3.1.x
 
     - name: Execute unit tests
-      working-directory: ./Blackjack
-      run: dotnet test
+      run: dotnet test $env:Test_Project_Path
 
     - name: Build Game
       run: dotnet build $env:Project_Name -c $env:Configuration
