@@ -6,11 +6,28 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Blackjack.Data\Blackjack.Data.csproj" />
+    <None Remove="Resources\sounds\card_placed_down.wav" />
+    <None Remove="Resources\sounds\card_riffle.wav" />
+    <None Remove="Resources\sounds\card_slap.wav" />
+    <None Remove="Resources\sounds\dealing_one_card.wav" />
+    <None Remove="Resources\sounds\dealing_several_cards.wav" />
+    <None Remove="Resources\sounds\jazz.mp3" />
+    <None Remove="Resources\sounds\overhand_shuffle.wav" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Configuration\" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\sounds\card_placed_down.wav" />
+    <Resource Include="Resources\sounds\card_riffle.wav" />
+    <Resource Include="Resources\sounds\card_slap.wav" />
+    <Resource Include="Resources\sounds\dealing_one_card.wav" />
+    <Resource Include="Resources\sounds\dealing_several_cards.wav" />
+    <Resource Include="Resources\sounds\jazz.mp3" />
+    <Resource Include="Resources\sounds\overhand_shuffle.wav" />
   </ItemGroup>
 
 </Project>

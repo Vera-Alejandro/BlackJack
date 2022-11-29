@@ -1,4 +1,5 @@
-﻿using Blackjack.Data.Enums;
+﻿
+using Blackjack.Data.Enums;
 using System.IO;
 
 namespace Blackjack.Data
