@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Blackjack.GamePlay\Blackjack.GamePlay.csproj" />
-    <ProjectReference Include="..\SQLite.DataBase\Storage.csproj" />
   </ItemGroup>
 
   <ItemGroup>
