@@ -1,38 +1,23 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Resources\sounds\**" />
-    <EmbeddedResource Remove="Resources\sounds\**" />
-    <None Remove="Resources\sounds\**" />
-    <Page Remove="Resources\sounds\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Resources\BackJack Title.png" />
-    <None Remove="Resources\Card Back.png" />
-    <None Remove="Resources\CloseButton.png" />
-    <None Remove="Resources\Minimize.png" />
-    <None Remove="Resources\Resize.png" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Blackjack.GamePlay\Blackjack.GamePlay.csproj" />
-    <ProjectReference Include="..\SQLite.DataBase\Storage.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\BackJack Title.png" />
-    <Resource Include="Resources\CloseButton.png" />
-    <Content Include="Resources\Minimize.png">
+    <Resource Include="Resources\Images\BackJack Title.png" />
+    <Resource Include="Resources\Images\CloseButton.png" />
+    <Content Include="Resources\Images\Minimize.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Resources\Resize.png" />
+    <Resource Include="Resources\Images\Resize.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,6 +33,23 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

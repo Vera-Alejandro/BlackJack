@@ -21,8 +21,8 @@ jobs:
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
-      Project_Name: BlackJack.v3.csproj
-      Test_Project_Path: CoreGameTesting\CoreGameTesting.csproj
+      Project_Name: .\Blackjack\BlackJack.v3\BlackJack.v3.csproj
+      Test_Project_Path: .\Blackjack\CoreGameTesting\CoreGameTesting.csproj
 
     steps:
     - name: Checkout
@@ -36,11 +36,9 @@ jobs:
         dotnet-version: 3.1.x
 
     - name: Execute unit tests
-      working-directory: ./Blackjack
-      run: dotnet test
+      run: dotnet test $env:Test_Project_Path
 
-    - name: Build game
-      working-directory: ./Blackjack/BlackJack.v3
+    - name: Build Game
       run: dotnet build $env:Project_Name -c $env:Configuration
       env:
         Configuration: ${{ matrix.configuration }}
