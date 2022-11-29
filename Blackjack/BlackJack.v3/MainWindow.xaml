@@ -7,85 +7,154 @@
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1130" Background="Black" BorderBrush="Black" WindowStyle="None" ResizeMode="NoResize">
-    <Grid Background="Black">
+    <Grid Background="Black" ShowGridLines="True">
 
-        <b:Interaction.Triggers>
-            <b:EventTrigger EventName="Loaded">
-                <b:InvokeCommandAction Command="{Binding InitializePropertiesCommand}"/>
-            </b:EventTrigger>
-        </b:Interaction.Triggers>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".33*"/>
+            <RowDefinition Height=".25*"/>
+            <RowDefinition/>
+            <RowDefinition Height=".33*"/>
+        </Grid.RowDefinitions>
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
+        <DockPanel Grid.Row="3" Grid.ColumnSpan="2">
+            <Button Style="{StaticResource BettingBtn}" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Center" 
+                    Content="Bet All" 
+                    Command="{Binding PlaceBetCommand}"
+                    CommandParameter="BetAll"/>
 
+            <Button Style="{StaticResource BettingBtn}" 
+                    Content="$1" 
+                    Command="{Binding PlaceBetCommand}"
+                    CommandParameter="1" />
 
-        <!--Betting Stack Panel-->
-        <StackPanel VerticalAlignment="Bottom" Height="125" Margin="10,10">
-            <TextBlock Foreground="White" FontSize="20" Margin="25,20" Width="75" HorizontalAlignment="Left" TextAlignment="Center"/>
-            <Button Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Left" Margin="25,-35" Content="Bet All" FontSize="18" Tag="BetAll" Command="{Binding PlaceBetCommand}"/>
-            <Button Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,825,-35" Content="$1" FontSize="18" Tag="1" Command="{Binding PlaceBetCommand}"/>
-            <Button Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,725,-35" Content="$5" FontSize="18" Tag="5" Command="{Binding PlaceBetCommand}"/>
-            <Button Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,625,-35" Content="$10" FontSize="18" Tag="10" Command="{Binding PlaceBetCommand}"/>
-            <Button Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,525,-35" Content="$25" FontSize="18" Tag="25" Command="{Binding PlaceBetCommand}"/>
-            <Button Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,425,-35" Content="$50" FontSize="18" Tag="50" Command="{Binding PlaceBetCommand}"/>
-            <Button Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,325,-35" Content="$100" FontSize="18" Tag="100" Command="{Binding PlaceBetCommand}"/>
-            <Button Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,225,-35" Content="$250" FontSize="18" Tag="250" Command="{Binding PlaceBetCommand}"/>
-            <Button Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,125,-35" Content="$500" FontSize="18" Tag="500" Command="{Binding PlaceBetCommand}"/>
-            <Button Foreground="White" BorderBrush="White" Background="Black" Height="35" Width="75" HorizontalAlignment="Right" Margin="0,-35,25,-35" Content="$1,000" FontSize="18" Tag="1000" Command="{Binding PlaceBetCommand}"/>
-        </StackPanel>
+            <Button Style="{StaticResource BettingBtn}" 
+                    Content="$5" 
+                    Command="{Binding PlaceBetCommand}"
+                    CommandParameter="5" />
 
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Horizontal">
-            <Image Source="/Resources/BackJack Title.png" Width="220"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="70"/>
+            <Button Style="{StaticResource BettingBtn}" 
+                    Content="$10" 
+                    Command="{Binding PlaceBetCommand}"
+                    CommandParameter="10"/>
+
+            <Button Style="{StaticResource BettingBtn}" 
+                    Content="$25" 
+                    Command="{Binding PlaceBetCommand}"
+                    CommandParameter="25"/>
+
+            <Button Style="{StaticResource BettingBtn}" 
+                    Content="$50" 
+                    Command="{Binding PlaceBetCommand}"
+                    CommandParameter="50"/>
+
+            <Button Style="{StaticResource BettingBtn}" 
+                    Content="$100"  
+                    Command="{Binding PlaceBetCommand}"
+                    CommandParameter="100"/>
+
+            <Button Style="{StaticResource BettingBtn}" 
+                    Content="$250" 
+                    Command="{Binding PlaceBetCommand}"
+                    CommandParameter="250"/>
+
+            <Button Style="{StaticResource BettingBtn}" 
+                    Content="$500" 
+                    Command="{Binding PlaceBetCommand}"
+                    CommandParameter="500"/>
+
+            <Button Style="{StaticResource BettingBtn}" 
+                    Content="$1,000" 
+                    Command="{Binding PlaceBetCommand}"
+                    CommandParameter="1000"/>
+        </DockPanel>
+
+        <StackPanel  VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Horizontal">
+            <Image Source="/Resources/Images/BackJack Title.png" Width="220"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="70"/>
             <Button x:Name="OpenProfile" Height="50" Width="100" Margin="20" Foreground="White" BorderBrush="White" Background="Black" Content="Profile" FontSize="20" Click="OpenProfile_OnClick"/>
         </StackPanel>
 
 
         <!--Top Right Buttons-->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
             <Button x:Name="MinButton" Width="25" Height="25" BorderBrush="Black" Click="MinButton_Click">
                 <Button.Background>
-                    <ImageBrush ImageSource="/Resources/Minimize.png"/>
+                    <ImageBrush ImageSource="/Resources/Images/Minimize.png"/>
                 </Button.Background>
             </Button>
             <Button x:Name="ReSizeButton" Width="25" Height="25" Margin="10,0" BorderBrush="Black" Click="ReSizeButton_Click">
                 <Button.Background>
-                    <ImageBrush ImageSource="/Resources/Resize.png"/>
+                    <ImageBrush ImageSource="/Resources/Images/Resize.png"/>
                 </Button.Background>
             </Button>
             <Button x:Name="CloseButton" Width="25" Height="25" BorderBrush="Black" Click="CloseButton_Click">
                 <Button.Background>
-                    <ImageBrush ImageSource="/Resources/CloseButton.png"/>
+                    <ImageBrush ImageSource="/Resources/Images/CloseButton.png"/>
                 </Button.Background>
             </Button>
         </StackPanel>
 
         <!--Dealer Panel-->
-        <StackPanel Margin="10,100" HorizontalAlignment="Left" Width="550" Height="550" VerticalAlignment="Top">
+        <StackPanel Grid.Row="1" Grid.Column="0">
             <TextBlock x:Name="DealerCountTitle" Foreground="White" FontSize="18" HorizontalAlignment="Left" ><Run Text="Dealer Count: "/><Run Text=" "/><InlineUIContainer>
                 <TextBlock x:Name="DealerCount" Foreground="White" Text="0" FontSize="18" VerticalAlignment="Bottom" />
             </InlineUIContainer></TextBlock>
 
-            <Grid Height="475" Children="{Binding DealerCardImages }"/>
         </StackPanel>
 
         <!--Player Panel-->
-        <StackPanel x:Name="PlayerBettingPanel" Margin="0,100,10,0" Height="550" Width="550" VerticalAlignment="Top" HorizontalAlignment="Right">
-            <TextBlock x:Name="PlayerCountTitle" Foreground="White" FontSize="18" HorizontalAlignment="Left" ><Run Text="Player Count: "/><Run Text=" "/><InlineUIContainer>
-                <TextBlock x:Name="PlayerCount" Foreground="White" Text="0" FontSize="18" VerticalAlignment="Bottom" Margin="0,0,250,0"/>
-            </InlineUIContainer><Run Text=" "/><InlineUIContainer>
-                <TextBlock x:Name="PlayerCashTitle" Foreground="White" Text="Cash: $" FontSize="18" TextAlignment="Right"/>
-            </InlineUIContainer><Run Text=" "/><InlineUIContainer>
-                <TextBlock x:Name="PlayerCash" Foreground="White" Text="500" FontSize="18" />
-            </InlineUIContainer></TextBlock>
+        <StackPanel Grid.Row="1" Grid.Column="1" 
+                        Orientation="Horizontal">
 
-            <Grid x:Name="PlayerCardContainer" Height="475" Children="{Binding PlayerCardImages }"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                <TextBlock Style="{ StaticResource PanelInfoText}" Text="Count: " />
+                <TextBlock Style="{ StaticResource PanelInfoText}" Text="21" />
+            </StackPanel>
 
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin=" 0 0 0 150" Width="550" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-            <Button Content="Hit" FontSize="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Background="Black" BorderBrush="White" Foreground="White" Height="50" Width="75" Margin="35,0,35,0" IsEnabled="False" Command="{Binding HitCommand}"/>
-            <Button Content="Stay" FontSize="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Background="Black" BorderBrush="White" Foreground="White" Height="50" Width="75" Margin="0,0,35,0" IsEnabled="False" Command="{Binding StayCommand}"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                <TextBlock Style="{ StaticResource PanelInfoText}" Text="Cash: $" />
+                <TextBlock Style="{ StaticResource PanelInfoText}" Text="69,420" />
+            </StackPanel>
         </StackPanel>
 
-        <TextBlock x:Name="Output" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="250,50" FontSize="15"/>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+            <Button Content="Hit" 
+                    FontSize="30" 
+                    VerticalAlignment="Bottom" 
+                    HorizontalAlignment="Right" 
+                    Background="Black" 
+                    BorderBrush="White" 
+                    Foreground="White" 
+                    Height="50" 
+                    Width="75" 
+                    Margin="35,0,35,0" 
+                    IsEnabled="False" 
+                    Command="{Binding HitCommand}"/>
+
+            <Button Content="Stay" 
+                    FontSize="30" 
+                    VerticalAlignment="Bottom" 
+                    HorizontalAlignment="Right" 
+                    Background="Black" 
+                    BorderBrush="White" 
+                    Foreground="White" 
+                    Height="50" 
+                    Width="75" 
+                    Margin="0,0,35,0" 
+                    IsEnabled="False" 
+                    Command="{Binding StayCommand}"/>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="0" Grid.Column="1" >
+            <TextBlock Foreground="White" FontSize="15" d:Text="Testing"/>
+        </StackPanel>
 
     </Grid>
 </Window>

@@ -1,6 +1,11 @@
-﻿using BlackJack.v3.ViewModels;
+﻿using Blackjack.Data;
+using BlackJack.v3.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Media.Imaging;
 
 namespace BlackJack.v3
 {
@@ -11,6 +16,7 @@ namespace BlackJack.v3
         public MainWindow()
         {
             InitializeComponent();
+
             _viewModel = App.ServiceProvider.GetRequiredService<MainWindowViewModel>();
             DataContext = _viewModel;
         }
@@ -25,6 +31,7 @@ namespace BlackJack.v3
         private void MinButton_Click(object sender, RoutedEventArgs e)
             => WindowState = WindowState.Minimized;
         #endregion
+
 
         //private void HitButton_Click(object sender, RoutedEventArgs e)
         //{
@@ -42,47 +49,38 @@ namespace BlackJack.v3
         //    EndGame(roundResult);
         //}
 
-
-
-
-
-
-
-
-        private void DisableBetButtons()
+        private void DisplayCardImages(UserType user, bool EndGame = false)
         {
-            BetAllButton.IsEnabled = false;
+            //var cardImgs = user == UserType.Player ? CurrentGame.GetPlayerCardList() : CurrentGame.GetDealerCardList();
+            //var cardBackImg = _viewModel.GetCardBackImage();
+            var marginRight = 160;
 
-            BetOneButton.IsEnabled = false;
-            BetFiveButton.IsEnabled = false;
-            BetTenButton.IsEnabled = false;
-            BetTwentyFiveButton.IsEnabled = false;
-            BetFiftyButton.IsEnabled = false;
-            BetOneHundredButton.IsEnabled = false;
-            BetTwoHundredFiftyButton.IsEnabled = false;
-            BetFiveHundredButton.IsEnabled = false;
-            BetOneThousandButton.IsEnabled = false;
+            //foreach (var card in cardImgs)
+            //{
+            //    string imgRoute = _viewModel.ShouldCardsBeDisplayed(user) || EndGame ? card.ImagePath : card.BackImagePath;
+
+            //    BitmapImage bitmap = new BitmapImage();
+
+            //    bitmap.BeginInit();
+            //    bitmap.UriSource = new Uri(imgRoute);
+            //    bitmap.EndInit();
+
+            //    Image displayImg = new Image
+            //    {
+            //        BindingGroup = new BindingGroup(),
+            //        IsEnabled = true,
+            //        Margin = new Thickness(0, 0, marginRight, 30),
+            //        Height = 350,
+            //        Width = 240,
+            //        Source = bitmap,
+            //        Visibility = Visibility.Visible
+            //    };
+
+            //    _ = user == UserType.Player ? PlayerCardContainer.Children.Add(displayImg) : DealerCardContainer.Children.Add(displayImg);
+            //    marginRight -= 75;
+            //}
         }
 
-        private void EnablePlayButtons()
-        {
-            HitButton.IsEnabled = true;
-            StayButton.IsEnabled = true;
-        }
-
-
-        private void ResetCardImages()
-        {
-            foreach (UIElement child in PlayerCardContainer.Children)
-            {
-                child.Visibility = Visibility.Hidden;
-            }
-
-            foreach (UIElement child in DealerCardContainer.Children)
-            {
-                child.Visibility = Visibility.Hidden;
-            }
-        }
 
 
         private void OpenProfile_OnClick(object Sender, RoutedEventArgs E)

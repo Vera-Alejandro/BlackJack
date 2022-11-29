@@ -4,10 +4,7 @@ using Blackjack.GamePlay;
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Media.Imaging;
 
 namespace BlackJack.v3.ViewModels;
 
@@ -32,6 +29,8 @@ public partial class MainWindowViewModel : ViewModelBase
     private bool _isBetAllBtnEnabled;
     private List<Image> _playerCardImages;
     private List<Image> _dealerCardImages;
+
+    #region Properties
 
     public string PlayerCount
     {
@@ -236,16 +235,11 @@ public partial class MainWindowViewModel : ViewModelBase
             OnPropertyChanged();
         }
     }
+    #endregion
 
     public MainWindowViewModel(GameInstance game)
     {
         _game = game;
-    }
-
-    [RelayCommand]
-    private void InitializeProperties()
-    {
-
     }
 
     [RelayCommand]
@@ -267,13 +261,13 @@ public partial class MainWindowViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    private void PlaceBet(object sender, RoutedEventArgs e)
+    private void PlaceBet(string betAmount)
     {
         ResetCardImages();
 
-        var amount = ((Button)sender).Tag.ToString();
+        //var amount = ((Button)sender).Tag.ToString();
 
-        var cashAmount = amount == "BetAll" ? _g.GetPlayerCash() : float.Parse(amount);
+        float cashAmount = betAmount == "BetAll" ? _game.GetPlayerCash() : float.Parse(betAmount);
 
         try
         {
@@ -301,9 +295,16 @@ public partial class MainWindowViewModel : ViewModelBase
         EnablePlayButtons();
     }
 
+    private void EnablePlayButtons()
+    {
+        IsHitEnabled = true;
+        IsStayEnabled = true;
+    }
+
+
     private void UpdateUserHandTotal(UserType user, bool isRoundFinished = false)
     {
-        DisplayCardImages(user, isRoundFinished);
+        //DisplayCardImages(user, isRoundFinished);
 
         if (user == UserType.Player)
         {
@@ -321,52 +322,11 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
-    private void DisplayCardImages(UserType user, bool EndGame = false)
-    {
-        var cardImgs = user == UserType.Player ? _game.GetPlayerCardList() : _game.GetDealerCardList();
-        var cardBackImg = _game.GetCardBackImage();
-        var marginRight = 160;
-
-        foreach (var card in cardImgs)
-        {
-            string imgRoute = _game.ShouldCardsBeDisplayed(user) || EndGame ? card.ImagePath : card.BackImagePath;
-
-            BitmapImage bitmap = new BitmapImage();
-
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri(imgRoute);
-            bitmap.EndInit();
-
-            Image displayImg = new Image
-            {
-                BindingGroup = new BindingGroup(),
-                IsEnabled = true,
-                Margin = new Thickness(0, 0, marginRight, 30),
-                Height = 350,
-                Width = 240,
-                Source = bitmap,
-                Visibility = Visibility.Visible
-            };
-
-            if (user == UserType.Player)
-            {
-                PlayerCardImages.Add(displayImg)
-            }
-            else
-            {
-                DealerCardImages.Add(displayImg);
-            }
-
-            marginRight -= 75;
-        }
-    }
-
     private void EndGame(GameResult reason)
     {
         string endGameText = "";
         string playerCount = _game.GetPlayerCardCount();
         string dealerCount = _game.GetDealerCardCount();
-
 
 
         switch (reason)
@@ -397,6 +357,19 @@ public partial class MainWindowViewModel : ViewModelBase
         EnableBetButtons();
 
         _game.NextRound();
+    }
+
+    private void ResetCardImages()
+    {
+        //foreach (var child in PlayerCardImages)
+        //{
+        //    child.Visibility = Visibility.Hidden;
+        //}
+
+        //foreach (var child in DealerCardImages)
+        //{
+        //    child.Visibility = Visibility.Hidden;
+        //}
     }
 
 
@@ -432,5 +405,20 @@ public partial class MainWindowViewModel : ViewModelBase
         IsBetFiveHundredBtnEnabled = true;
         IsBetOneThousandBtnEnabled = true;
     }
+    private void DisableBetButtons()
+    {
+        IsBetAllBtnEnabled = false;
+
+        IsBetOneBtnEnabled = false;
+        IsBetFiveBtnEnabled = false;
+        IsBetTenBtnEnabled = false;
+        IsBetTwentyFiveBtnEnabled = false;
+        IsBetFiftyBtnEnabled = false;
+        IsBetOneHundredBtnEnabled = false;
+        IsBetTwoHundredFiftyBtnEnabled = false;
+        IsBetFiveHundredBtnEnabled = false;
+        IsBetOneThousandBtnEnabled = false;
+    }
+
 
 }
