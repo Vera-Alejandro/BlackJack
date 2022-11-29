@@ -40,7 +40,7 @@ jobs:
       run: dotnet test
 
     - name: Build game
-      working-directory: ./Blackjack
+      working-directory: ./Blackjack/BlackJack.v3
       run: dotnet build $env:Project_Name -c $env:Configuration
       env:
         Configuration: ${{ matrix.configuration }}
