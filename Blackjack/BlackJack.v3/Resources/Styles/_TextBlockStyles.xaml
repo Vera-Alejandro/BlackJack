@@ -4,5 +4,6 @@
 
     <Style x:Key="PanelInfoText" TargetType="TextBlock">
         <Setter Property="Foreground" Value="WhiteSmoke"/>
+        <Setter Property="FontSize" Value="18" />
     </Style>
 </ResourceDictionary>

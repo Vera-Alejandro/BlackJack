@@ -40,7 +40,6 @@ public partial class MainWindowViewModel : ViewModelBase
             if (value == _playerCount) return;
             _playerCount = value;
             OnPropertyChanged();
-            OnPropertyChanged(nameof(PlayerCount));
         }
     }
 
@@ -51,7 +50,6 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             if (value == _dealerCount) return;
             _dealerCount = value;
-            OnPropertyChanged();
             OnPropertyChanged();
         }
     }
@@ -64,7 +62,6 @@ public partial class MainWindowViewModel : ViewModelBase
             if (value == _playerCash) return;
             _playerCash = value;
             OnPropertyChanged();
-            OnPropertyChanged();
         }
     }
 
@@ -75,7 +72,6 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             if (value == _output) return;
             _output = value;
-            OnPropertyChanged();
             OnPropertyChanged();
         }
     }
@@ -88,7 +84,6 @@ public partial class MainWindowViewModel : ViewModelBase
             if (value == _isHitEnabled) return;
             _isHitEnabled = value;
             OnPropertyChanged();
-            OnPropertyChanged();
         }
     }
 
@@ -99,7 +94,6 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             if (value == _isStayEnabled) return;
             _isStayEnabled = value;
-            OnPropertyChanged();
             OnPropertyChanged();
         }
     }
@@ -251,6 +245,16 @@ public partial class MainWindowViewModel : ViewModelBase
     }
 
     [RelayCommand]
+    private void StartGame()
+    {
+        UpdatePlayerCashDisplay();
+        DealerCount = _game.GetDealerCardCount();
+
+        UpdatePlayerCashDisplay();
+        EnableBetButtons();
+    }
+
+    [RelayCommand]
     private void Stay()
     {
         GameResult roundResult = _game.DealersTurn();
@@ -283,14 +287,12 @@ public partial class MainWindowViewModel : ViewModelBase
 
         DisableBetButtons();
 
-        Output = $"Player Bet {cashAmount}";
-
         _game.InitDealCards();
 
         UpdateUserHandTotal(UserType.Player);
         UpdateUserHandTotal(UserType.Dealer);
 
-        Output = $"Player Bet {cashAmount}";
+        Output = $"Player Bet ${cashAmount}";
 
         EnablePlayButtons();
     }
@@ -388,7 +390,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private void DisablePlayButtons()
     {
         IsHitEnabled = false;
-        _isStayEnabled = false;
+        IsStayEnabled = false;
     }
 
     private void EnableBetButtons()
